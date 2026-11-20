@@ -6,61 +6,83 @@
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-blue.svg)](LICENSE)
 [![Docker-Image](https://img.shields.io/badge/ghcr.io-pbaumfalk%2Ffolium-blue?logo=docker)](https://github.com/PBaumfalk/Folium/pkgs/container/folium)
 
-**Linkseiten auf der eigenen Domain, mit Entwurf, Versionen und einem Design, das zur Homepage passt.**
-Folium ist eine selbst gehostete Alternative zu Linktree und ähnlichen Diensten,
-gedacht für Kanzleien, Praxen, Unternehmen, Vereine und Verwaltungen. Eine
-Adresse wie `links.example.com/team` gehört in die Instagram-Bio, auf die
-Visitenkarte, in die E-Mail-Signatur oder auf den Flyer. Wer sie öffnet, kann
-mit einem Tipp anrufen, einen Termin anfragen, den Weg zum Standort finden oder
-die passende Seite der Homepage aufrufen. Für die Organisation, jede Person,
-jeden Standort und jede Kampagne gibt es eine eigene Seite.
+**Linkseiten wie bei Linktree, aber auf der eigenen Domain, im eigenen Design und ohne Tracking.**
+Folium ist eine kostenlose, selbst gehostete Alternative zu Linktree, Beacons
+und ähnlichen Diensten. Eine kurze Adresse wie `links.example.com/cafe` gehört
+in die Instagram-Bio, auf Flyer, Speisekarte, Visitenkarte, Plakat oder in die
+E-Mail-Signatur. Dahinter steht eine schnelle Seite fürs Smartphone mit allem,
+was zählt: große Knöpfe zum Anrufen, Reservieren oder Buchen, die wichtigsten
+Links, Öffnungszeiten, Anfahrt und Social Media.
 
-Folium braucht kein Abo und kein Konto bei einem Anbieter. Besucher bekommen
-keine Cookies, und gespeichert werden nur Tagessummen, keine IP-Adressen.
-Entwürfe bleiben unsichtbar, bis jemand auf **Veröffentlichen** klickt.
+Folium passt für jede Organisation und jede Person: Café, Verein, Handwerksbetrieb,
+Studio, Praxis, Agentur, Band, Schule oder Verwaltung. Mehrere Seiten
+nebeneinander sind kein Problem, etwa eine pro Standort, Person oder Aktion.
 
-*Folium* ist lateinisch für **Blatt**. Folium gehört zur Familie von
-[Filum](https://github.com/PBaumfalk/Filum) (Kurzlinks, „Faden“) und
-[Tessera](https://github.com/PBaumfalk/Tessera) (QR-Codes, „Mosaiksteinchen“).
+Folium läuft auf **Ihrem eigenen Server**, ohne Abo und ohne Konto bei einem
+Anbieter. Besucher bekommen keine Cookies, gezählt werden nur Tagessummen, keine
+IP-Adressen. Entwürfe bleiben unsichtbar, bis jemand auf **Veröffentlichen**
+klickt.
 
-> **English abstract:** Self-hosted link-in-bio pages for firms, practices, companies and associations. It offers
+*Folium* ist lateinisch für **Blatt**: eine Seite, auf der alles Wichtige steht.
+Folium gehört zur Familie von [Filum](https://github.com/PBaumfalk/Filum)
+(Kurzlinks) und [Tessera](https://github.com/PBaumfalk/Tessera) (QR-Codes).
+
+> **English abstract:** Self-hosted link-in-bio pages for any organisation or
+> person, a privacy-friendly Linktree alternative on your own domain. It offers
 > multiple pages with drafts, published versions, restore, duplicate and trash,
-> plus prominent actions (call, appointment, contact) and scheduled visibility.
-> There are three design directions as presets, with a data-only theme editor and
-> WCAG contrast enforcement. *Adopt design from homepage* analyses a website's
-> HTML, CSS and screenshots taken in an isolated browser without internet access.
-> All requests are SSRF-checked. Claude then proposes three themes as validated
-> structured output, with a cost budget. Statistics are aggregate-only, with no
-> cookies and no IPs. Pages can be shared via QR, Filum or Tessera. Other features
-> are export/import, backups, OIDC and two strictly separated ports. It ships as
+> plus prominent actions (call, book, email, contact) and scheduled visibility.
+> There are three design presets, a data-only theme editor and WCAG contrast
+> enforcement. *Adopt design from homepage* analyses a website's HTML, CSS and
+> screenshots taken in an isolated browser without internet access; all requests
+> are SSRF-checked. Claude then proposes three themes as validated structured
+> output, with a cost budget. Statistics are aggregate-only, with no cookies and
+> no IPs. Pages can be shared via QR, Filum or Tessera. It also offers
+> export/import, backups, OIDC and two strictly separated ports. It ships as
 > Docker Compose (app + browser sidecar). The UI and docs are in German.
 
-![Editor mit Eintragsliste, Inspektor und Live-Vorschau](docs/screenshots/editor.png)
+| Café | Yoga-Studio | Tischlerei |
+| --- | --- | --- |
+| ![Linkseite eines Cafés im Design Editorial](docs/screenshots/oeffentlich-cafe-smartphone.png) | ![Linkseite eines Yoga-Studios im Design Modern Boutique](docs/screenshots/oeffentlich-studio-smartphone.png) | ![Linkseite einer Tischlerei im Design Signature](docs/screenshots/oeffentlich-tischlerei-smartphone.png) |
+| Design *Editorial* | Design *Modern Boutique* | Design *Signature* |
 
 ## 📖 Handbuch
 
 Die vollständige Anleitung steht im **[Handbuch](docs/handbuch/README.md)**: 23
-Kapitel mit Bildschirmfotos. Die Kapitel für alle, die Seiten pflegen, kommen
-ohne IT-Kenntnisse aus; dazu gibt es eigene Teile für Admins und die IT.
-- **Für alle:** [Was ist Folium?](docs/handbuch/01-was-ist-folium.md),
+Kapitel mit Bildschirmfotos.
+- **Für alle, die Seiten pflegen** (ohne IT-Kenntnisse):
+  [Was ist Folium?](docs/handbuch/01-was-ist-folium.md),
   [die erste Seite in fünf Minuten](docs/handbuch/02-erste-schritte.md),
   [Design](docs/handbuch/05-design.md) und
-  [Design aus Homepage übernehmen](docs/handbuch/06-design-aus-homepage.md)
+  [Design aus der Homepage übernehmen](docs/handbuch/06-design-aus-homepage.md)
 - **Für die IT:** [Installation](docs/handbuch/13-installation.md),
   [Reverse Proxy](docs/handbuch/14-reverse-proxy.md),
   [KI-Anbindung](docs/handbuch/19-ki-anbindung.md) und
   [Sicherheitskonzept](docs/handbuch/20-sicherheit.md)
 
-Was tatsächlich geprüft ist und was nur vorbereitet, steht ehrlich in
-[Kapitel 22](docs/handbuch/22-tests.md) und
-[Kapitel 23](docs/handbuch/23-einschraenkungen.md).
+Was geprüft ist und was nicht, steht offen in [Kapitel 22](docs/handbuch/22-tests.md)
+und [Kapitel 23](docs/handbuch/23-einschraenkungen.md).
+
+## Wofür?
+
+| Wer | Typische Seite |
+| --- | --- |
+| Café, Restaurant, Laden | Tisch reservieren, Speisekarte, Öffnungszeiten, Gutscheine, Anfahrt |
+| Verein, Initiative | Mitglied werden, Termine, Spenden, Newsletter, Kontakt zum Vorstand |
+| Handwerk, Dienstleister | Anrufen, Angebot anfragen, Referenzen, Ausbildung |
+| Studio, Kurse, Coaching | Probestunde buchen, Kursplan, Preise, Online-Angebote |
+| Praxis, Kanzlei, Beratung | Termin, Sprechzeiten, Standorte, Leistungen |
+| Kreative, Bands, Podcasts | Neueste Folge, Shop, Tourdaten, Kanäle |
+| Veranstaltung, Kampagne | Tickets, Programm, Anfahrt, zeitgesteuert bis zum Ende der Aktion |
+| Verwaltung, Schule | Formulare, Sprechzeiten, Ansprechpersonen, Notfallnummern |
 
 ## Installation
 
-Folium ist eine Server-Anwendung aus zwei Containern:
+Folium ist eine Server-Anwendung: Sie wird einmal installiert, und alle im Team
+pflegen ihre Seiten im Browser. Sie besteht aus zwei Containern:
 - `folium` liefert die öffentlichen Seiten und die Verwaltung aus.
-- `folium-browser` macht die Bildschirmfotos für die Homepage-Analyse. Er hängt
-  in einem internen Netz **ohne Internetzugang**.
+- `folium-browser` macht die Bildschirmfotos für „Design aus der Homepage
+  übernehmen“. Er hängt in einem internen Netz **ohne Internetzugang** und ist
+  optional.
 
 <details>
 <summary><strong>🧪 Ausprobieren auf dem eigenen Rechner</strong> (Docker Desktop, fünf Minuten)</summary>
@@ -74,15 +96,14 @@ docker compose logs folium | grep Einrichtungscode
 ```
 
 Dann <http://localhost:8081> öffnen, den Einrichtungscode eingeben und das
-Admin-Konto anlegen. Unter **Einstellungen** Impressum und Datenschutzerklärung
-eintragen, dann entsteht unter **Neue Seite** mit der Vorlage „Organisation“ in
-einer Minute eine vollständige Beispielseite. Veröffentlichte Seiten erscheinen
-unter `http://localhost:8080/<adresse>`. Wieder entfernen:
-`docker compose down -v`.
+Admin-Konto anlegen. Unter **Einstellungen** die Adressen von Impressum und
+Datenschutzerklärung eintragen, dann unter **Neue Seite** eine Vorlage wählen.
+Veröffentlichte Seiten erscheinen unter `http://localhost:8080/<adresse>`.
+Wieder entfernen: `docker compose down -v`.
 </details>
 
 <details>
-<summary><strong>🖥️ Auf einem Server</strong> (für die IT: Docker Compose hinter Caddy)</summary>
+<summary><strong>🖥️ Auf einem Server</strong> (für die IT: Docker Compose hinter einem Reverse Proxy)</summary>
 
 ```bash
 git clone https://github.com/PBaumfalk/Folium.git && cd Folium
@@ -91,10 +112,10 @@ docker compose up -d --build  # Docker Compose 2.24 oder neuer
 docker compose logs folium    # Einrichtungscode ablesen
 ```
 
-Fertige Images statt selbst zu bauen: in `.env`
-`FOLIUM_IMAGE=ghcr.io/pbaumfalk/folium:latest` und
-`FOLIUM_BROWSER_IMAGE=ghcr.io/pbaumfalk/folium-browser:latest` setzen, dann
-`docker compose pull && docker compose up -d`. Die CI baut beide Images für amd64
+Ohne eigenes Bauen: in `.env`
+`FOLIUM_IMAGE=ghcr.io/pbaumfalk/folium:0.1.0` und
+`FOLIUM_BROWSER_IMAGE=ghcr.io/pbaumfalk/folium-browser:0.1.0` setzen, dann
+`docker compose pull && docker compose up -d`. Fertige Images gibt es für amd64
 und arm64.
 
 Folium trennt Besucher und Verwaltung auf zwei Ports:
@@ -104,56 +125,69 @@ Folium trennt Besucher und Verwaltung auf zwei Ports:
 | 8080 | nur veröffentlichte Linkseiten, keine API | die öffentliche Domain, z. B. `links.example.com` |
 | 8081 | Verwaltung und API | eine interne Adresse, nur über Intranet oder VPN |
 
-Caddy- und nginx-Beispiele, HTTPS, Updates und Sicherung stehen in
-[Kapitel 13–18](docs/handbuch/13-installation.md).
+Beispiele für Caddy und nginx, HTTPS, Updates und Sicherung:
+[Handbuch, Kapitel 13–18](docs/handbuch/13-installation.md).
 </details>
 
 ## Funktionen im Überblick
 
-| Editorial | Modern Boutique | Signature |
-| --- | --- | --- |
-| ![Editorial auf dem Smartphone](docs/screenshots/oeffentlich-muster-smartphone.png) | ![Boutique auf dem Smartphone](docs/screenshots/oeffentlich-boutique-smartphone.png) | ![Signature auf dem Smartphone](docs/screenshots/oeffentlich-signature-smartphone.png) |
+![Editor mit Eintragsliste, Inspektor und Live-Vorschau](docs/screenshots/editor.png)
 
-- **Mehrere Linkseiten:** für die Organisation, einzelne Personen, Standorte und
-  Kampagnen. Jede Seite
-  hat eine eigene Adresse, auf Wunsch auch eine eigene Domain
-  ([Kapitel 3](docs/handbuch/03-seiten-bearbeiten.md),
+- **Mehrere Linkseiten:** Jede Seite hat ihre eigene Adresse, auf Wunsch auch
+  eine eigene Domain. Vorlagen gibt es für Organisation, Person, Standort und
+  Kampagne ([Kapitel 3](docs/handbuch/03-seiten-bearbeiten.md),
   [9](docs/handbuch/09-domains.md)).
-- **Hauptaktionen zuerst:** Anrufen, Termin, E-Mail und Kontakt als große
-  Knöpfe. Dazu Links mit Symbol oder Bild, Überschriften, Standorte mit
-  Routenlink, Sprechzeiten und Social Media.
-- **Bedienung:** Einträge per Maus oder Tastatur sortieren. Einträge lassen sich
-  zeitgesteuert ein- und ausblenden, und Gelöschtes lässt sich zurückholen
-  ([Kapitel 3](docs/handbuch/03-seiten-bearbeiten.md)).
-- **Entwurf und Versionen:** Folium speichert automatisch. Vor dem
-  Veröffentlichen zeigt es die Änderungen und prüft Impressum, Datenschutz und
-  Kontrast. Jede Version lässt sich wiederherstellen, dazu gibt es Duplizieren
-  und einen Papierkorb
-  ([Kapitel 4](docs/handbuch/04-veroeffentlichen-und-versionen.md)).
-- **Drei Designrichtungen als Startpunkt**, danach frei anpassbar: Farben mit
-  Kontrastprüfung, zehn mitgelieferte Schriften oder eigene, Knopfform,
-  Kopflayout, Liste, Karten oder Bildkacheln. Eigenes CSS ist bewusst nicht
-  möglich ([Kapitel 5](docs/handbuch/05-design.md)).
-- **Design aus Homepage übernehmen:** Folium liest Farben, Schriften und Knöpfe
-  der Homepage aus und macht Bildschirmfotos. Vor dem Senden zeigt es, was an
-  Claude geht und was es kostet. Claude schlägt drei Varianten mit Ihren eigenen
-  Inhalten vor; die Übernahme ändert nur den Entwurf
-  ([Kapitel 6](docs/handbuch/06-design-aus-homepage.md)).
-- **Teilen:** Folium erzeugt einen QR-Code als PNG oder SVG, einen Kurzlink über
-  Filum oder eine Übergabe an Tessera. Quellen lassen sich mit `?src=` messen
-  ([Kapitel 7](docs/handbuch/07-teilen.md)).
-- **Ehrliche Statistik:** Folium zählt Aufrufe und Klicks als Tagessummen. Bots
-  und Link-Vorschauen werden getrennt gezählt, die Daten lassen sich als CSV
-  exportieren. Eine ausgefallene Zählung blockiert nie einen Link
-  ([Kapitel 8](docs/handbuch/08-statistik.md)).
-- **Für den Betrieb gebaut:** Folium sichert sich automatisch, und jede
-  Sicherung lässt sich per Klick wiederherstellen. Seiten lassen sich als ZIP
-  exportieren und importieren. Dazu kommen Rollen, die Anmeldung über authentik
-  (OIDC) und ein Änderungsprotokoll, abrufbar über die API
-  ([Kapitel 10](docs/handbuch/10-konten-und-rollen.md),
-  [17](docs/handbuch/17-sicherung.md)).
+- **Das Wichtigste zuerst:** Große Knöpfe zum Anrufen, Schreiben, Buchen oder für
+  ein Kontaktformular, mit frei wählbarer Beschriftung wie „Tisch reservieren“
+  oder „Probestunde buchen“. Dazu kommen:
+  - Links mit Symbol oder Bild, Überschriften und Text
+  - Standorte mit Routenlink, Öffnungszeiten und Social Media
+- **Bedienung:**
+  - Einträge per Maus oder Tastatur sortieren
+  - Einträge zeitgesteuert ein- und ausblenden, etwa für eine Aktion bis
+    Sonntag
+  - Gelöschtes zurückholen ([Kapitel 3](docs/handbuch/03-seiten-bearbeiten.md))
+- **Entwurf und Versionen:**
+  - Folium speichert automatisch.
+  - Vor dem Veröffentlichen zeigt es die Änderungen und prüft Impressum,
+    Datenschutz und Kontrast.
+  - Jede frühere Version lässt sich wiederherstellen, dazu gibt es Duplizieren
+    und einen Papierkorb ([Kapitel 4](docs/handbuch/04-veroeffentlichen-und-versionen.md)).
+- **Drei Designrichtungen als Startpunkt**, danach frei anpassbar:
+  - Farben mit Kontrastprüfung
+  - zehn mitgelieferte Schriften oder eigene
+  - Knopfform, Kopf mit oder ohne Foto
+  - Darstellung als Liste, Karten oder Bildkacheln
 
-| Design aus Homepage: drei Varianten | Statistik |
+  Eigenes CSS ist bewusst nicht möglich, damit jede Seite schnell und lesbar
+  bleibt ([Kapitel 5](docs/handbuch/05-design.md)).
+- **Design aus der Homepage übernehmen:**
+  - Folium liest Farben, Schriften und Knöpfe der eigenen Website aus und macht
+    Bildschirmfotos.
+  - Vor dem Senden zeigt es, was an die KI geht und was es kostet.
+  - Claude schlägt drei Varianten mit Ihren eigenen Inhalten vor; die Übernahme
+    ändert nur den Entwurf ([Kapitel 6](docs/handbuch/06-design-aus-homepage.md)).
+
+  Ohne KI-Schlüssel bleibt der Editor voll nutzbar.
+- **Teilen:** QR-Code als PNG oder SVG, Kurzlink über Filum, Gestaltung in
+  Tessera. Mit `?src=` lässt sich messen, woher die Besucher kommen, etwa vom
+  Flyer oder aus Instagram ([Kapitel 7](docs/handbuch/07-teilen.md)).
+- **Ehrliche Statistik:**
+  - Aufrufe und Klicks als Tagessummen
+  - Bots und Link-Vorschauen getrennt gezählt
+  - Export als CSV
+  - Eine ausgefallene Zählung blockiert nie einen Link
+    ([Kapitel 8](docs/handbuch/08-statistik.md)).
+- **Fürs Team und den Betrieb:**
+  - drei Rollen (Admin, Redaktion, Ansehen) und Anmeldung über OIDC, etwa mit
+    authentik
+  - automatische Sicherungen mit Wiederherstellen per Klick
+  - Export und Import als ZIP
+
+  ([Kapitel 10](docs/handbuch/10-konten-und-rollen.md),
+  [17](docs/handbuch/17-sicherung.md))
+
+| Design aus der Homepage: drei Varianten | Statistik |
 | --- | --- |
 | ![Drei Designvarianten aus der Homepage-Analyse](docs/screenshots/analyse-varianten.png) | ![Statistik mit Tageswerten und Links](docs/screenshots/statistik.png) |
 
@@ -165,8 +199,7 @@ Caddy- und nginx-Beispiele, HTTPS, Updates und Sicherung stehen in
   - rund 23 KB HTML mit CSS
 - **Besuchsdaten:** nur Tagessummen je Seite, Eintrag und Quelle, keine
   IP-Adressen und keine Gerätekennungen. Einen Textbaustein für die
-  Datenschutzerklärung enthält
-  [Kapitel 12](docs/handbuch/12-datenschutz.md).
+  Datenschutzerklärung enthält [Kapitel 12](docs/handbuch/12-datenschutz.md).
 - **Homepage-Analyse gegen SSRF geschützt:**
   - nur Port 80 und 443
   - eigene DNS-Prüfung, jede aufgelöste Adresse muss öffentlich sein
@@ -200,7 +233,7 @@ Warum so: [Kapitel 21 – Architektur](docs/handbuch/21-architektur.md).
 ```bash
 npm install
 npm run build:web
-npx tsx scripts/demo.ts             # Demo „Muster & Partner“: http://localhost:18081
+npx tsx scripts/demo.ts             # Demo mit drei Beispielseiten: http://localhost:18081
                                     # admin@example.test / demo-passwort-123
 AI_PROVIDER=fake DEMO_BROWSER=1 npx tsx scripts/demo.ts   # mit simulierter KI und Bildschirmfotos
 npm test                            # 137 Server-Tests (vitest), davon 1 nur mit KI-Schlüssel
@@ -212,7 +245,8 @@ npm run docs:check                  # Links und Anker in README und Handbuch pr�
 
 Alle Testebenen laufen bei jedem Push in GitHub Actions, die Server-Tests in drei
 Zeitzonen. Ein Image entsteht nur, wenn alle grün sind
-([Kapitel 22](docs/handbuch/22-tests.md)). Änderungen stehen im [Änderungsprotokoll](CHANGELOG.md).
+([Kapitel 22](docs/handbuch/22-tests.md)). Änderungen stehen im
+[Änderungsprotokoll](CHANGELOG.md).
 
 ## Lizenz
 
@@ -223,13 +257,14 @@ Mitgeliefert werden:
   Hanken Grotesk, Aleo, Bricolage Grotesque und Instrument Sans (`fonts/`)
 - Symbole aus [Lucide](https://lucide.dev) (ISC)
 
-Alle Beispieldaten (Muster & Partner, Musterstadt, Beispielhausen) sind erfunden.
+Alle Beispiele (Café Lindenblatt, Studio Wellenform, Tischlerei Holm, Muster &
+Partner) sind erfunden.
 
 ## Hinweis
 
 Folium ist ein Werkzeug; wer es betreibt, ist für die verarbeiteten Daten
-verantwortlich. Bitte den Textbaustein für die Datenschutzerklärung in
-[Kapitel 12](docs/handbuch/12-datenschutz.md) vor der Veröffentlichung prüfen
-oder prüfen lassen. Die Designvorschläge der KI sind Vorschläge; veröffentlicht
-wird erst, was ein Mensch freigibt. Die Software wird ohne Gewähr bereitgestellt
-(siehe [LICENSE](LICENSE)).
+verantwortlich. Den Textbaustein für die Datenschutzerklärung in
+[Kapitel 12](docs/handbuch/12-datenschutz.md) bitte vor der Veröffentlichung
+prüfen oder prüfen lassen. Die Designvorschläge der KI sind Vorschläge;
+veröffentlicht wird erst, was ein Mensch freigibt. Die Software wird ohne Gewähr
+bereitgestellt (siehe [LICENSE](LICENSE)).

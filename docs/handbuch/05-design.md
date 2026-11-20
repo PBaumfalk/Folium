@@ -4,7 +4,7 @@
 
 Im Reiter **Design** legen Sie fest, wie eine Seite aussieht: Farben, Schriften, Knöpfe und Aufbau. Jede Änderung landet wie beim Inhalt automatisch im Entwurf und wird erst mit **Veröffentlichen** öffentlich. Die Vorschau rechts zeigt jede Änderung sofort.
 
-![Reiter „Design“ mit Designrichtungen, Farben und Schloss-Symbolen](../screenshots/design.png)
+![Reiter „Design“ der Beispielseite „Café Lindenblatt“ mit Designrichtungen, Farben und Schloss-Symbolen](../screenshots/design.png)
 
 ## Die drei Designrichtungen
 
@@ -14,7 +14,7 @@ Oben im Reiter stehen drei Musterkarten. Ein Klick auf eine Karte setzt **alle**
 
 *Ruhige Serifentypografie, Anrufen zuerst, lädt am schnellsten.* Die empfohlene Richtung für die meisten Seiten.
 
-![Beispielseite „Muster & Partner“ in Editorial auf dem Smartphone](../screenshots/oeffentlich-muster-smartphone.png)
+![Beispielseite „Café Lindenblatt“ in Editorial auf dem Smartphone](../screenshots/oeffentlich-cafe-smartphone.png)
 
 Schriften Newsreader (Überschriften) und Hanken Grotesk (Text), helles Papiergrau mit dunklem Grün als Akzent, leicht gerundete gefüllte Knöpfe, Links als Liste mit Trennlinien, Kopf als reiner Text.
 
@@ -22,7 +22,7 @@ Schriften Newsreader (Überschriften) und Hanken Grotesk (Text), helles Papiergr
 
 *Großes Foto, markante Termin-Pille, Bildkacheln.*
 
-![Beispielseite „Muster & Partner“ in Modern Boutique auf dem Smartphone](../screenshots/oeffentlich-boutique-smartphone.png)
+![Beispielseite „Studio Wellenform“ (Yoga & Pilates) in Modern Boutique auf dem Smartphone](../screenshots/oeffentlich-studio-smartphone.png)
 
 Schriften Bricolage Grotesque und Instrument Sans, Salbeigrün mit Goldakzent, pillenförmige Knöpfe, großzügige Abstände, Kopf mit großem Foto oben, Links als Bildkacheln. Die erste Hauptaktion ist eine große Pille, die beim Herunterscrollen unten am Bildschirmrand mitläuft.
 
@@ -30,13 +30,13 @@ Schriften Bricolage Grotesque und Instrument Sans, Salbeigrün mit Goldakzent, p
 
 *Kräftige Slab-Serife, sattes Grün, farbiges Band – wie eine klassische Firmenwebsite.*
 
-![Beispielseite „Muster & Partner“ in Signature am Desktop](../screenshots/oeffentlich-signature-desktop.png)
+![Beispielseite „Tischlerei Holm“ in Signature am Desktop](../screenshots/oeffentlich-tischlerei-desktop.png)
 
 Schrift Aleo für alles, sattes Grün als Akzent, Kopf mit Foto seitlich und großem Logo, Links als Karten, der erste Linkabschnitt als grünes Band.
 
 > **Gut zu wissen:** Die Kopf-Layouts mit Foto wirken nur, wenn im Reiter **Inhalt** ein **Titelbild** gesetzt ist. Ohne Titelbild zeigt jede Richtung den Kopf als reinen Text.
 
-Weitere Bildschirmfotos liegen als `oeffentlich-*-desktop.png` und `oeffentlich-*-smartphone.png` im Ordner `docs/screenshots`.
+Die drei Beispielseiten stammen aus der Demo: ein Café, ein Yoga-Studio und eine Tischlerei. Jede Richtung passt zu jeder Branche; die Zuordnung ist nur ein Beispiel. Weitere Bildschirmfotos liegen als `oeffentlich-cafe-*`, `oeffentlich-studio-*` und `oeffentlich-tischlerei-*` (jeweils `-desktop.png` und `-smartphone.png`) im Ordner `docs/screenshots`.
 
 ## Alle Einstellungen
 
@@ -49,7 +49,7 @@ Sieben Farben, jede mit Farbwähler und Eingabefeld für den Hexwert (`#RRGGBB`)
 | **Hintergrund** | Fläche der ganzen Seite |
 | **Flächen (Karten)** | Hintergrund von Karten und Kacheln |
 | **Text** | Haupttext |
-| **Nebentext** | Beschreibungen, persönliche Angaben, Sprechzeiten |
+| **Nebentext** | Beschreibungen, persönliche Angaben, Öffnungszeiten |
 | **Akzent (Hauptaktion)** | Füllung der Hauptaktion und Akzente |
 | **Text auf Akzent** | Schrift auf der Hauptaktion |
 | **Linien** | Trennlinien und Rahmen |

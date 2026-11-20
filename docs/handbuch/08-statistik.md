@@ -74,7 +74,7 @@ Die Tabelle **Quellen** schlüsselt Aufrufe und Klicks nach dem Kennwort `?src=`
 | --- | --- |
 | **QR-Code** | Adresse mit `?src=qr`, also der QR-Code aus Folium oder aus Tessera |
 | **Direkt / unbekannt** | Adresse ohne gültiges Kennwort, z. B. abgetippt, aus einem Lesezeichen oder über einen Filum-Kurzlink |
-| das Kennwort selbst | z. B. `instagram`, `visitenkarte` |
+| das Kennwort selbst | z. B. `instagram`, `flyer`, `visitenkarte` |
 
 Wie Sie Quellen anlegen, steht in [Kapitel 7](07-teilen.md#quellen-mit-src).
 

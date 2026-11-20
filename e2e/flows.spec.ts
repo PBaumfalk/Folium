@@ -36,7 +36,7 @@ test('anlegen, bearbeiten, sortieren, veröffentlichen, Entwurf privat, wiederhe
 
 test('Block löschen lässt sich rückgängig machen; Papierkorb', async ({ page, request }) => {
   await login(page);
-  await page.getByRole('link', { name: 'Muster & Partner (Editorial)' }).click();
+  await page.getByRole('link', { name: 'Café Lindenblatt' }).click();
   await expect(page.locator('.blk').first()).toBeVisible();
   const n = await page.locator('.blk').count();
   await page.getByRole('button', { name: /^Löschen: / }).first().click();
@@ -46,22 +46,22 @@ test('Block löschen lässt sich rückgängig machen; Papierkorb', async ({ page
   await saved(page);
   // Duplizieren und Papierkorb
   await page.goto('/');
-  await page.locator('.pcard', { hasText: 'Muster & Partner (Signature)' }).getByRole('button', { name: 'Duplizieren' }).click();
-  await expect(page.getByRole('heading', { name: 'Muster & Partner (Signature) (Kopie)' })).toBeVisible();
+  await page.locator('.pcard', { hasText: 'Tischlerei Holm' }).getByRole('button', { name: 'Duplizieren' }).click();
+  await expect(page.getByRole('heading', { name: 'Tischlerei Holm (Kopie)' })).toBeVisible();
   await page.getByRole('tab', { name: 'Seite' }).click();
   await page.getByRole('button', { name: 'In den Papierkorb' }).click();
   await page.getByRole('dialog').getByRole('button', { name: 'In den Papierkorb' }).click();
   await page.getByRole('link', { name: 'Papierkorb' }).click();
   await page.locator('tr', { hasText: 'Kopie' }).getByRole('button', { name: 'Wiederherstellen' }).click();
   await expect(page.locator('.toast', { hasText: 'wiederhergestellt' })).toBeVisible();
-  expect((await request.get(`${PUB}/signature`)).status()).toBe(200);
+  expect((await request.get(`${PUB}/tischlerei`)).status()).toBe(200);
 });
 
 test('gleichzeitige Bearbeitung in zwei Tabs meldet Konflikt', async ({ browser }) => {
   const ctx = await browser.newContext();
   const a = await ctx.newPage();
   await login(a);
-  await a.getByRole('link', { name: 'Muster & Partner (Boutique)' }).click();
+  await a.getByRole('link', { name: 'Studio Wellenform' }).click();
   const b = await ctx.newPage();
   await b.goto(a.url());
   await b.getByLabel('Kurzbeschreibung').fill('Fassung B');
@@ -76,7 +76,7 @@ test('gleichzeitige Bearbeitung in zwei Tabs meldet Konflikt', async ({ browser 
 test('Ansehen-Rolle kann nichts verändern', async ({ page }) => {
   await login(page, 'ansicht@example.test');
   await expect(page.getByRole('button', { name: 'Neue Seite' })).toHaveCount(0);
-  await page.getByRole('link', { name: 'Muster & Partner (Editorial)' }).click();
+  await page.getByRole('link', { name: 'Café Lindenblatt' }).click();
   await expect(page.getByRole('button', { name: 'Veröffentlichen' })).toHaveCount(0);
   await expect(page.getByLabel('Name', { exact: true })).toBeDisabled();
 });

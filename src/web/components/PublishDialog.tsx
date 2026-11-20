@@ -91,7 +91,7 @@ export function PublishDialog({ page, content, theme, onClose, onDone }: { page:
         </ul>
       )}
       <div style={{ marginTop: 16 }}>
-        <Field label="Notiz zur Version (optional)">{(id) => <input id={id} className="input" value={note} maxLength={300} onChange={(e) => setNote(e.target.value)} placeholder="z. B. Sprechzeiten Dezember" />}</Field>
+        <Field label="Notiz zur Version (optional)">{(id) => <input id={id} className="input" value={note} maxLength={300} onChange={(e) => setNote(e.target.value)} placeholder="z. B. Öffnungszeiten Dezember" />}</Field>
       </div>
     </Dialog>
   );

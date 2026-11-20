@@ -107,7 +107,7 @@ Zeigt, ob **Filum (Kurzlinks)** und **Tessera (QR-Codes)** verbunden sind. Verbu
 ### Export und Import
 
 - **Alles exportieren** (Redaktion und Admin): lädt eine ZIP-Datei `folium-export-<datum>.zip` mit allen Seiten (Entwurf und veröffentlichte Fassung), ihrem Design und allen verwendeten Bildern und Schriften.
-- **Export importieren** (nur Admin): liest eine solche ZIP-Datei ein (höchstens 100 MB). Jede Seite entsteht als **neuer Entwurf**; nichts wird überschrieben, nichts wird veröffentlicht. Ist die Adresse schon vergeben, erhält die importierte Seite den Zusatz `-import` (z. B. `muster-import`). Folium meldet „… Seite(n) als Entwurf importiert.“
+- **Export importieren** (nur Admin): liest eine solche ZIP-Datei ein (höchstens 100 MB). Jede Seite entsteht als **neuer Entwurf**; nichts wird überschrieben, nichts wird veröffentlicht. Ist die Adresse schon vergeben, erhält die importierte Seite den Zusatz `-import` (z. B. `cafe-import`). Folium meldet „… Seite(n) als Entwurf importiert.“
 
 Der Export ist keine vollständige Sicherung: Konten, Statistik, Versionen, Domains und Einstellungen sind nicht enthalten. Einzelheiten in [Kapitel 17](17-sicherung.md#export-und-import-als-zip).
 

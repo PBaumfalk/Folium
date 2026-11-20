@@ -10,7 +10,7 @@ Nach dem Veröffentlichen kommen Sie am schnellsten über den Knopf **Teilen** i
 
 ## Adresse kopieren
 
-Im Bereich **Adresse** steht die öffentliche Adresse, etwa `https://links.example.com/muster`.
+Im Bereich **Adresse** steht die öffentliche Adresse, etwa `https://links.example.com/cafe`.
 
 - **Kopieren** legt sie in die Zwischenablage (*Adresse kopiert.*).
 - Das Symbol daneben öffnet die öffentliche Seite in einem neuen Tab.
@@ -24,10 +24,11 @@ Wenn Sie wissen wollen, über welchen Weg Besucher kommen, hängen Sie an die Ad
 
 | Einsatz | Adresse |
 | --- | --- |
-| Instagram-Profil | `https://links.example.com/muster?src=instagram` |
-| Visitenkarte | `https://links.example.com/muster?src=visitenkarte` |
-| E-Mail-Signatur | `https://links.example.com/muster?src=signatur` |
-| QR-Code aus Folium | `…/muster?src=qr` (setzt Folium selbst) |
+| Instagram-Profil | `https://links.example.com/cafe?src=instagram` |
+| Flyer oder Plakat | `https://links.example.com/cafe?src=flyer` |
+| Visitenkarte | `https://links.example.com/cafe?src=visitenkarte` |
+| E-Mail-Signatur | `https://links.example.com/cafe?src=signatur` |
+| QR-Code aus Folium | `…/cafe?src=qr` (setzt Folium selbst) |
 
 Die Statistik zeigt jede Quelle in einer eigenen Zeile, `qr` als **QR-Code**, Besuche ohne Kennwort als **Direkt / unbekannt** ([Kapitel 8](08-statistik.md#quellen)).
 

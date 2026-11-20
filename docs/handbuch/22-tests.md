@@ -83,7 +83,7 @@ Vier Schritte (Metadaten-Adresse, internes Docker-Ziel, echte Analyse, Sicherung
 npx tsx scripts/demo.ts                 # Daten in data-demo/
 ```
 
-Startet Folium mit drei Konten und der erfundenen Beispielseite „Muster & Partner“ in allen drei Designs (`/muster`, `/boutique`, `/signature`) auf den Ports 18080 (öffentlich) und 18081 (Verwaltung), dazu eine erfundene Beispiel-Homepage auf `http://localhost:18090/`. Anmeldung `admin@example.test` / `demo-passwort-123`. Ohne weitere Variablen ist keine KI eingerichtet; mit `AI_PROVIDER=fake` läuft der Ablauf mit simulierten Antworten. `DEMO_BROWSER=1` startet einen lokalen Chromium für Bildschirmfotos. Die Bildschirmfotos des Handbuchs erzeugt `node scripts/screenshots.mjs`.
+Startet Folium mit drei Konten und drei erfundenen Beispielseiten, je eine pro Design: „Café Lindenblatt“ (`/cafe`, Editorial), „Studio Wellenform“ (`/studio`, Modern Boutique) und „Tischlerei Holm“ (`/tischlerei`, Signature), auf den Ports 18080 (öffentlich) und 18081 (Verwaltung), dazu die erfundene Homepage von „Café Lindenblatt“ auf `http://localhost:18090/`. Anmeldung `admin@example.test` / `demo-passwort-123`. Ohne weitere Variablen ist keine KI eingerichtet; mit `AI_PROVIDER=fake` läuft der Ablauf mit simulierten Antworten. `DEMO_BROWSER=1` startet einen lokalen Chromium für Bildschirmfotos. Die Bildschirmfotos des Handbuchs erzeugt `node scripts/screenshots.mjs`.
 
 ## Live-Test der KI
 

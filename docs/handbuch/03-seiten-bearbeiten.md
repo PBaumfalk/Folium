@@ -10,7 +10,7 @@
 
 | Feld | Bedeutung |
 | --- | --- |
-| **Name (nur intern)** | Erscheint nur in der Verwaltung, z. B. „Muster Instagram“. Höchstens 120 Zeichen. |
+| **Name (nur intern)** | Erscheint nur in der Verwaltung, z. B. „Café Instagram“ oder „Sommerfest 2027“. Höchstens 120 Zeichen. |
 | **Adresse** | Teil hinter dem Schrägstrich der öffentlichen Adresse. Darunter steht die vollständige Adresse zur Kontrolle. |
 | **Inhalt** | Inhaltsvorlage, siehe unten |
 | **Design (jederzeit änderbar)** | Eine der drei Designrichtungen ([Kapitel 5](05-design.md)). Vorausgewählt ist die **Standard-Designrichtung** aus den Einstellungen (ab Werk **Editorial**, [Kapitel 11](11-einstellungen.md#pflichtangaben-für-neue-seiten)). Als **Empfohlen** markiert ist immer **Editorial**. |
@@ -31,9 +31,9 @@ Solange Sie das Feld **Adresse** nicht selbst ändern, bildet Folium sie aus dem
 
 | Vorlage | Bringt mit |
 | --- | --- |
-| **Organisation** | Kopf „Muster & Partner“ mit zwei Personen (Dr. Maria Muster, Jonas Beispiel), Hauptaktionen Anrufen, Termin anfragen, E-Mail schreiben, Sprechzeiten, Abschnitt „Wobei wir helfen“ mit vier Links (Leistungen, Erstberatung, Häufige Fragen, Kosten), Abschnitt „Standorte“ (Musterstadt, Beispielhausen), Abschnitt „Mehr von uns“ (Über uns, Aktuelles) |
-| **Person** | Kopf „Dr. Maria Muster“ mit Funktion, Anrufen, E-Mail, Abschnitt „Schwerpunkte“ mit zwei Links, Standort Musterstadt |
-| **Standort** | Kopf „Muster & Partner in Beispielhausen“, Anrufen, Termin anfragen, Sprechzeiten, Standort Beispielhausen, Link „Alle Standorte“ |
+| **Organisation** | Kopf „Muster & Partner“ mit der Kurzbeschreibung „Hier steht in einem Satz, wer Sie sind und was Sie anbieten.“ und der Angabe „Ansprechpartnerin: Maria Muster“, Hauptaktionen Anrufen, Termin anfragen, E-Mail schreiben, Öffnungszeiten (Mo.–Fr. 9–17 Uhr, Sa. 10–14 Uhr), Abschnitt „Unser Angebot“ mit vier Links (Unsere Leistungen, Neu hier?, Häufige Fragen, Preise), Abschnitt „Standorte“ (Musterstadt, Beispielhausen), Abschnitt „Mehr von uns“ (Über uns, Aktuelles) |
+| **Person** | Kopf „Maria Muster“ mit der Angabe „Muster & Partner, Musterstadt“, Anrufen, E-Mail, Abschnitt „Mehr über mich“ mit zwei Links (Angebot, Über mich), Standort Musterstadt |
+| **Standort** | Kopf „Muster & Partner in Beispielhausen“, Anrufen, Termin anfragen, Öffnungszeiten, Standort Beispielhausen, Link „Alle Standorte“ |
 | **Kampagne** | Kurzer Text, Termin anfragen, Anrufen, Link „Mehr erfahren“ |
 | **Leer** | Nur der Name als Kopf, keine Einträge |
 
@@ -45,9 +45,9 @@ Im Reiter **Inhalt** steht oben der Bereich **Kopf der Seite**.
 
 | Feld | Hinweis |
 | --- | --- |
-| **Name** | Groß oben auf der Seite, z. B. „Muster & Partner“. Pflicht, höchstens 80 Zeichen. Er steht auch im Seitenfuß („© …“) und im Browser-Tab. |
+| **Name** | Groß oben auf der Seite, z. B. „Café Lindenblatt“. Pflicht, höchstens 80 Zeichen. Er steht auch im Seitenfuß („© …“) und im Browser-Tab. |
 | **Kurzbeschreibung** | Ein bis zwei Sätze, höchstens 200 Zeichen |
-| **Persönliche Angaben** | Eine Angabe pro Zeile, höchstens 5 Zeilen mit je 120 Zeichen, z. B. Namen, Titel, Qualifikationen oder Sprachen |
+| **Persönliche Angaben** | Eine Angabe pro Zeile, höchstens 5 Zeilen mit je 120 Zeichen, z. B. Ansprechpersonen, Titel, Qualifikationen, Sprachen oder „Plätze im Hof“ |
 | **Logo** | Über dem Namen; Größe im Design einstellbar |
 | **Profilbild (rund)** | Erscheint nur, wenn der Kopf ohne Titelbild dargestellt wird |
 | **Titelbild** | Für die Kopf-Layouts „Foto oben“ und „Foto seitlich“ ([Kapitel 5](05-design.md)). Ohne Titelbild zeigt Folium immer den reinen Textkopf. |
@@ -66,7 +66,7 @@ Unter der Liste **Einträge** stehen sieben Knöpfe, einer je Eintragsart. Ein n
 | **Link** | **Titel** (Pflicht, 120 Zeichen), **Beschreibung (optional)** (240 Zeichen), **Ziel** (`https://`, `http://`, `tel:` oder `mailto:`), **Symbol** (Automatisch oder eines von 22 Symbolen), **Bild (optional)** | Zeile, Karte oder Bildkachel, je nach Design |
 | **Überschrift** | **Überschrift** (80 Zeichen) | Beginnt einen neuen Abschnitt; alle folgenden Einträge gehören dazu |
 | **Standort** | **Name**, **Rolle** (z. B. Hauptsitz), **Adresse** (mehrzeilig), **Hinweis (optional)**, **Routenlink (optional)**, nur `https://` | Adressblock; mit Routenlink zusätzlich „Route planen“ |
-| **Kontakt** | **Telefon**, **E-Mail**, **Sprechzeiten** | Kleine Zeilen mit Symbol; Telefon und E-Mail sind anklickbar |
+| **Kontakt** | **Telefon**, **E-Mail**, **Öffnungs- oder Sprechzeiten** | Kleine Zeilen mit Symbol; Telefon und E-Mail sind anklickbar |
 | **Social Media** | Bis zu 10 Profile, je **Netzwerk** (LinkedIn, Instagram, Facebook, XING, YouTube, X, TikTok, Mastodon, WhatsApp, Website) und **Profil-Adresse** | Reihe von Profil-Links |
 | **Text** | **Text** (1000 Zeichen, reiner Text, Leerzeile = neuer Absatz) | Fließtext |
 
@@ -103,7 +103,7 @@ Unter den Feldern jedes Eintrags steht der aufklappbare Bereich **Sichtbarkeit u
 | **Sichtbar ab** | Datum und Uhrzeit, ab der der Eintrag erscheint. Leer = sofort. |
 | **Sichtbar bis** | Datum und Uhrzeit, bis zu der der Eintrag erscheint, einschließlich dieser Minute. Leer = unbegrenzt. |
 
-Beispiel: „Sichtbar bis 24.12., 13:59“ zeigt den Eintrag bis 13:59:59 Uhr. Die Zeiten gelten in der Zeitzone, die die IT eingestellt hat (`APP_TIMEZONE`, Standard Europe/Berlin); der Hinweis unter den Feldern nennt sie (*Zeiten gelten in der Zeitzone …*). In der Liste tragen zeitgesteuerte Einträge den Hinweis *Zeitgesteuert* und ein Kalendersymbol.
+So erscheint etwa der Ticket-Link zum Sommerfest erst mit dem Vorverkauf und verschwindet nach dem letzten Festtag, oder ein Hinweis auf Betriebsferien nur in den Ferien. Beispiel: „Sichtbar bis 24.12., 13:59“ zeigt den Eintrag bis 13:59:59 Uhr. Die Zeiten gelten in der Zeitzone, die die IT eingestellt hat (`APP_TIMEZONE`, Standard Europe/Berlin); der Hinweis unter den Feldern nennt sie (*Zeiten gelten in der Zeitzone …*). In der Liste tragen zeitgesteuerte Einträge den Hinweis *Zeitgesteuert* und ein Kalendersymbol.
 
 Der Zeitplan selbst wird erst mit dem Veröffentlichen wirksam. Danach blendet Folium den Eintrag zum eingestellten Zeitpunkt von selbst ein oder aus, ohne dass jemand erneut veröffentlichen muss.
 

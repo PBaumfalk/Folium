@@ -90,8 +90,8 @@ Mit der Rolle **Ansehen** sind alle Felder gesperrt und die Knöpfe zum Ändern 
 ## Die erste Seite in wenigen Minuten
 
 1. **Seiten → Neue Seite** klicken.
-2. **Name (nur intern)** eingeben, etwa „Muster Instagram“. Folium schlägt daraus die **Adresse** vor (`muster-instagram`); Sie können sie überschreiben, zum Beispiel mit `instagram`.
-3. Unter **Inhalt** die Vorlage **Organisation** lassen. Sie bringt Telefon, Termin, E-Mail, Sprechzeiten, Leistungen, zwei Standorte und Links zur Homepage mit, gefüllt mit erfundenen Beispieldaten („Muster & Partner“, Musterstadt), die Sie durch Ihre eigenen ersetzen.
+2. **Name (nur intern)** eingeben, etwa „Café Instagram“. Folium schlägt daraus die **Adresse** vor (`cafe-instagram`); Sie können sie überschreiben, zum Beispiel mit `instagram`.
+3. Unter **Inhalt** die Vorlage **Organisation** lassen. Sie bringt Telefon, Termin, E-Mail, Öffnungszeiten, Angebot, zwei Standorte und Links zur Homepage mit, gefüllt mit erfundenen Beispieldaten („Muster & Partner“, Musterstadt), die Sie durch Ihre eigenen ersetzen.
 4. Unter **Design** **Editorial** lassen und **Seite anlegen** klicken.
 5. Im Reiter **Inhalt** Kopf und Einträge prüfen. Was nicht passt, ändern Sie direkt; ein Klick auf einen Eintrag öffnet seine Felder unterhalb der Liste.
 6. Im Reiter **Seite** prüfen, ob **Impressum** und **Datenschutzerklärung** stimmen. Folium übernimmt sie aus den Einstellungen; sind sie dort noch leer, tragen Sie sie hier ein, sonst lässt sich die Seite nicht veröffentlichen.

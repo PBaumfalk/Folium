@@ -43,7 +43,7 @@ Der Knopf **Veröffentlichen** oben rechts ist nur aktiv, wenn es Änderungen ge
    Eine Kontrastwarnung hält Sie nicht auf. Besser ist es aber, im Reiter **Design** auf **Korrigieren** zu klicken ([Kapitel 5](05-design.md#kontrastprüfung-und-korrigieren)).
 
 2. **Änderungen prüfen.** Unter *Änderungen gegenüber Version N* listet Folium jede Änderung mit einer Marke **Neu**, **Geändert** oder **Entfernt**: neue und gelöschte Einträge mit Titel, geänderte Einträge (mit dem Zusatz *eingeblendet*, *ausgeblendet* oder *Zeitplan*, wenn nur das geändert wurde), die *Reihenfolge der Einträge*, den *Kopf der Seite*, *Pflichtangaben oder Suchmaschinen-Einstellungen* und das *Design*. Bei der ersten Veröffentlichung steht dort *Erste Veröffentlichung dieser Seite*.
-3. **Notiz zur Version (optional)** eintragen, etwa „Sprechzeiten Dezember“. Höchstens 300 Zeichen. Die Notiz erscheint später in der Liste der Versionen.
+3. **Notiz zur Version (optional)** eintragen, etwa „Öffnungszeiten über die Feiertage“. Höchstens 300 Zeichen. Die Notiz erscheint später in der Liste der Versionen.
 4. **Jetzt veröffentlichen** klicken.
 
 Unten erscheint *Veröffentlicht als Version N.* mit dem Knopf **Teilen**, der direkt zum Reiter **Teilen** führt. Die Seite ist ab sofort unter ihrer Adresse erreichbar.
@@ -75,7 +75,7 @@ Je Zeile gibt es diese Knöpfe:
 ### Wiederherstellen oder In Entwurf laden?
 
 - **Wiederherstellen** ist der Notausgang: Nach einer fehlerhaften Veröffentlichung ist mit einem Klick wieder der alte Stand online. Danach können Sie den Entwurf in Ruhe korrigieren.
-- **In Entwurf laden** nutzen Sie, wenn Sie eine alte Fassung als Ausgangspunkt für neue Änderungen brauchen, etwa die Sommer-Sprechzeiten vom letzten Jahr.
+- **In Entwurf laden** nutzen Sie, wenn Sie eine alte Fassung als Ausgangspunkt für neue Änderungen brauchen, etwa die Sommer-Öffnungszeiten oder das Festprogramm vom letzten Jahr.
 
 > **Gut zu wissen:** **In Entwurf laden** ersetzt den bisherigen Entwurf vollständig. Die Rückfrage *Version N in den Entwurf laden?* weist darauf hin: *Der aktuelle Entwurf wird durch diese Version ersetzt. Öffentlich ändert sich nichts, bis Sie veröffentlichen. Den bisherigen Entwurf finden Sie danach nicht mehr unter „Versionen“.* Ungespeicherte oder unveröffentlichte Änderungen gehen dabei verloren; nur das bisherige Design landet unter **Frühere Entwurfsdesigns** ([Kapitel 5](05-design.md#frühere-entwurfsdesigns)).
 
@@ -91,7 +91,7 @@ Hat eine veröffentlichte Seite **Unveröffentlichte Änderungen**, erscheint ob
 - Die Kopie ist nie veröffentlicht und hat keine Versionen.
 - Folium meldet *Kopie „…“ angelegt.* und öffnet sie im Editor.
 
-Typischer Einsatz: aus der Seite der Organisation eine Seite für einen Standort oder eine Kampagne ableiten. Passen Sie danach Name und Adresse im Reiter **Seite** an.
+Typischer Einsatz: aus der Seite der Organisation eine Seite für einen Standort, eine Person oder eine Aktion wie das Sommerfest ableiten. Passen Sie danach Name und Adresse im Reiter **Seite** an.
 
 ## Papierkorb
 

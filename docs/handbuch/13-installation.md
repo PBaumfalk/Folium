@@ -138,7 +138,7 @@ Gut zu wissen:
 
 ## Entwicklungs-Demo ohne Docker
 
-Für Entwicklung, Bildschirmfotos und Browser-Tests gibt es eine Demo mit erfundenen Beispieldaten (Seite „Muster & Partner“ in allen drei Designs). Voraussetzung: Node.js 24 (mindestens 22).
+Für Entwicklung, Bildschirmfotos und Browser-Tests gibt es eine Demo mit erfundenen Beispieldaten (drei Beispielseiten in den drei Designs: Café Lindenblatt, Studio Wellenform und Tischlerei Holm). Voraussetzung: Node.js 24 (mindestens 22).
 
 ```bash
 npm ci
@@ -149,8 +149,8 @@ npx tsx scripts/demo.ts
 | | |
 | --- | --- |
 | Verwaltung | `http://localhost:18081` |
-| Öffentlich | `http://localhost:18080/muster`, `/boutique`, `/signature` |
-| Beispiel-Homepage | `http://localhost:18090/` (erfunden, für „Design aus Homepage übernehmen“) |
+| Öffentlich | `http://localhost:18080/cafe` (Editorial), `/studio` (Modern Boutique), `/tischlerei` (Signature) |
+| Beispiel-Homepage | `http://localhost:18090/` (erfundene Homepage von „Café Lindenblatt“, für „Design aus Homepage übernehmen“) |
 | Konten | `admin@example.test`, `redaktion@example.test`, `ansicht@example.test`, jeweils Passwort `demo-passwort-123` |
 | Daten | Ordner `data-demo/` (beim zweiten Start wiederverwendet; zum Neuanfang löschen) |
 

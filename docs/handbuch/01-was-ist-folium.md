@@ -2,29 +2,43 @@
 
 # 1 — Was ist Folium?
 
-Folium erstellt **Linkseiten** für Organisationen, etwa Kanzleien, Praxen, Unternehmen, Vereine oder Verwaltungen: eine schlichte, schnelle Seite mit den wichtigsten Wegen zu Ihnen, etwa „Anrufen“, „Termin anfragen“, Leistungen, Standorte und Links zur Homepage. Solche Seiten verlinkt man im Instagram-Profil, auf Visitenkarten, in der E-Mail-Signatur oder per QR-Code auf Flyern. Folium läuft auf Ihrem eigenen Server, ohne Cloud-Dienst und ohne Tracking durch Dritte.
+Folium erstellt **Linkseiten** für jede Organisation und jede Person: Café, Verein, Handwerksbetrieb, Studio, Praxis, Agentur, Band, Schule oder Verwaltung. Eine Linkseite ist eine schlichte, schnelle Seite fürs Smartphone mit den wichtigsten Wegen zu Ihnen: große Knöpfe wie „Anrufen“, „Tisch reservieren“ oder „Probestunde buchen“, dazu die wichtigsten Links, Öffnungszeiten, Anfahrt und Social Media. Solche Seiten verlinkt man in der Instagram-Bio, auf Flyer, Speisekarte, Plakat oder Visitenkarte, in der E-Mail-Signatur oder per QR-Code. Folium läuft auf Ihrem eigenen Server, ohne Abo, ohne Cloud-Dienst und ohne Tracking durch Dritte.
 
 *Folium* ist lateinisch für **Blatt**. Eine Linkseite ist ein einzelnes Blatt, auf dem alles Wichtige steht.
 
-![Die Übersicht „Linkseiten“ mit den drei veröffentlichten Seiten der Demo „Muster & Partner“](../screenshots/seiten.png)
+![Die Übersicht „Linkseiten“ mit den drei veröffentlichten Beispielseiten der Demo: Café Lindenblatt, Studio Wellenform und Tischlerei Holm](../screenshots/seiten.png)
 
 ## Wofür man Folium braucht
 
-- **Ein Link für alles.** Instagram und andere Netzwerke erlauben im Profil oft nur einen Link. Die Linkseite bündelt Telefon, Termin, E-Mail, Leistungen und Standorte dahinter.
-- **Eine Seite je Zweck.** Eine Seite für die Organisation, eine je Person, eine je Standort, eine für eine Kampagne. Jede hat ihre eigene Adresse, etwa `links.example.com/muster`.
-- **Änderungen ohne Agentur.** Sprechzeiten, Telefonnummern oder ein neuer Ratgeber-Link sind in wenigen Minuten geändert. Gedruckte QR-Codes zeigen weiter auf dieselbe Adresse.
+- **Ein Link für alles.** Instagram und andere Netzwerke erlauben im Profil oft nur einen Link. Die Linkseite bündelt dahinter, was Besucher brauchen: Telefon, Reservierung oder Buchung, E-Mail, Angebot, Öffnungszeiten und Anfahrt.
+- **Eine Seite je Zweck.** Eine Seite für das Ganze, eine je Person, eine je Standort, eine für eine Aktion wie das Sommerfest. Jede hat ihre eigene Adresse, etwa `links.example.com/cafe`, `links.example.com/verein` oder `links.example.com/sommerfest`.
+- **Änderungen ohne Agentur.** Öffnungszeiten, Kursplan, Telefonnummer oder der Link zum neuen Programm sind in wenigen Minuten geändert. Gedruckte QR-Codes zeigen weiter auf dieselbe Adresse.
+- **Ohne IT-Kenntnisse.** Wer Seiten pflegt, braucht nur einen Browser. Installiert wird Folium einmal, danach arbeiten alle im Team in der Verwaltung.
+
+Typische Seiten:
+
+| Wer | Typische Seite |
+| --- | --- |
+| Café, Restaurant, Laden | Tisch reservieren, Speisekarte, Öffnungszeiten, Gutscheine, Anfahrt |
+| Verein, Initiative | Mitglied werden, Termine, Spenden, Newsletter, Kontakt zum Vorstand |
+| Handwerk, Dienstleister | Anrufen, Angebot anfragen, Referenzen, Ausbildung |
+| Studio, Kurse, Coaching | Probestunde buchen, Kursplan, Preise, Online-Angebote |
+| Praxis, Kanzlei, Beratung | Termin, Sprechzeiten, Standorte, Leistungen |
+| Kreative, Bands, Podcasts | Neueste Folge, Shop, Tourdaten, Kanäle |
+| Veranstaltung, Kampagne | Tickets, Programm, Anfahrt, zeitgesteuert bis zum Ende der Aktion |
+| Verwaltung, Schule | Formulare, Sprechzeiten, Ansprechpersonen, Notfallnummern |
 - **Wissen, was genutzt wird.** Folium zählt Aufrufe und Klicks als Tagessummen, ohne Besucher zu verfolgen ([Kapitel 8](08-statistik.md)).
 
 ## Grundbegriffe
 
 | Begriff | Bedeutung | Beispiel |
 | --- | --- | --- |
-| **Seite** (Linkseite) | Eine öffentliche Seite mit Kopf, Einträgen und Pflichtlinks | „Muster Instagram“ |
-| **Name** | Interner Name der Seite in der Verwaltung; Besucher sehen ihn nicht | „Muster & Partner (Editorial)“ |
-| **Adresse** | Der Teil hinter dem Schrägstrich der öffentlichen Adresse | `muster` → `https://links.example.com/muster` |
+| **Seite** (Linkseite) | Eine öffentliche Seite mit Kopf, Einträgen und Pflichtlinks | die Seite des Cafés |
+| **Name** | Interner Name der Seite in der Verwaltung; Besucher sehen ihn nicht | „Café Lindenblatt“, „Sommerfest 2027“ |
+| **Adresse** | Der Teil hinter dem Schrägstrich der öffentlichen Adresse | `cafe` → `https://links.example.com/cafe` |
 | **Kopf** | Oberer Teil der Seite: Name der Organisation oder Person, Kurzbeschreibung, persönliche Angaben, Logo, Bilder | |
-| **Eintrag** | Ein Baustein der Seite: Hauptaktion, Link, Überschrift, Standort, Kontakt, Social Media oder Text | „Unsere Leistungen“ |
-| **Hauptaktion** | Ein großer Knopf wie „Anrufen“, „E-Mail schreiben“ oder „Termin anfragen“ | „Anrufen: 030 123 456 70“ |
+| **Eintrag** | Ein Baustein der Seite: Hauptaktion, Link, Überschrift, Standort, Kontakt, Social Media oder Text | „Speisekarte“, „Kursplan“ |
+| **Hauptaktion** | Ein großer Knopf wie „Anrufen“, „E-Mail schreiben“ oder „Probestunde buchen“ | „Tisch reservieren: 030 123 456 70“ |
 | **Entwurf** | Der Stand, an dem Sie arbeiten. Er wird automatisch gespeichert und ist für Besucher unsichtbar | |
 | **Veröffentlichte Version** | Der Stand, den Besucher sehen. Jede Veröffentlichung erzeugt eine neue, nummerierte Version | „Version 3“ |
 | **Design** | Farben, Schriften, Knopfformen und Aufbau einer Seite | |
@@ -57,7 +71,7 @@ Wie Konten angelegt und Rollen vergeben werden, steht in [Kapitel 10](10-konten-
 
 ## Datenschutz-Prinzip
 
-Folium zählt **Aufrufe, keine Personen**. Die öffentlichen Seiten setzen keine Cookies, laden nichts von fremden Servern und speichern keine IP-Adressen, Geräteangaben oder Besucherkennungen. Gespeichert werden nur Tagessummen, etwa „Seite Muster, 14. November, Quelle QR-Code: 23 Aufrufe“. Die Statistik lässt sich in den Einstellungen ganz abschalten. Einzelheiten und ein Textbaustein für die Datenschutzerklärung stehen in [Kapitel 12](12-datenschutz.md).
+Folium zählt **Aufrufe, keine Personen**. Die öffentlichen Seiten setzen keine Cookies, laden nichts von fremden Servern und speichern keine IP-Adressen, Geräteangaben oder Besucherkennungen. Gespeichert werden nur Tagessummen, etwa „Seite cafe, 14. November, Quelle QR-Code: 23 Aufrufe“. Die Statistik lässt sich in den Einstellungen ganz abschalten. Einzelheiten und ein Textbaustein für die Datenschutzerklärung stehen in [Kapitel 12](12-datenschutz.md).
 
 Für „Design aus Homepage übernehmen“ sendet Folium nur Angaben über die öffentliche Homepage und die Art der Einträge Ihrer Linkseite an die KI, nie weitere Inhalte und keine personenbezogenen Daten Ihrer Besucher. Bevor etwas gesendet wird, zeigt Folium genau an, was übertragen würde ([Kapitel 6](06-design-aus-homepage.md)).
 

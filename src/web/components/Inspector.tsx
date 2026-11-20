@@ -130,7 +130,7 @@ export function BlockInspector({ block, onChange, disabled }: { block: Block; on
         <>
           <Text label="Telefon" value={b.phone ?? ''} max={40} onChange={(v) => set({ phone: v || null })} disabled={disabled} />
           <Text label="E-Mail" value={b.email ?? ''} max={200} onChange={(v) => set({ email: v || null })} disabled={disabled} />
-          <Text label="Sprechzeiten" value={b.hours ?? ''} max={200} onChange={(v) => set({ hours: v || null })} disabled={disabled} />
+          <Text label="Öffnungs- oder Sprechzeiten" value={b.hours ?? ''} max={200} onChange={(v) => set({ hours: v || null })} disabled={disabled} />
         </>
       );
       break;

@@ -1,7 +1,8 @@
 # Folium — Handbuch
 
 Willkommen im Handbuch von **Folium**, den selbst gehosteten Linkseiten für
-Organisationen, etwa Kanzleien, Praxen, Unternehmen, Vereine oder Verwaltungen.
+jede Organisation und jede Person: Café, Verein, Handwerksbetrieb, Studio,
+Praxis, Kreative, Veranstaltung oder Verwaltung.
 Teil A richtet sich an alle, die Seiten anlegen, gestalten und teilen,
 und setzt keine technischen Vorkenntnisse voraus. Teil B ist für Admins, Teil C
 für die IT, die Folium installiert und betreibt.
@@ -56,7 +57,7 @@ Was tatsächlich geprüft, was simuliert und was noch nicht getestet ist, steht 
 1. Folium im Browser öffnen und anmelden ([Kapitel 2](02-erste-schritte.md)).
 2. **Neue Seite** wählen und Folgendes festlegen:
    - einen Namen
-   - eine Adresse, z. B. `muster`
+   - eine Adresse, z. B. `cafe`
    - die Vorlage „Organisation“
    - eine Designrichtung
 

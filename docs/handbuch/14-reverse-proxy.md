@@ -149,7 +149,7 @@ Eine Domain, die nur im Proxy, aber nicht in Folium eingetragen ist, zeigt „Di
 
 ```bash
 # Öffentliche Seite: Status 200, kein Set-Cookie, Content-Security-Policy vorhanden
-curl -sI https://links.example.com/muster
+curl -sI https://links.example.com/cafe
 
 # Öffentlicher Port kennt keine Verwaltung: erwartet 404
 curl -s -o /dev/null -w '%{http_code}\n' https://links.example.com/api/v1/session

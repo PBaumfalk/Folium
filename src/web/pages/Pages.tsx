@@ -38,7 +38,7 @@ export function PagesList() {
       <div className="head">
         <div>
           <h1 className="title">Linkseiten</h1>
-          <p className="sub">Seiten für die Organisation, einzelne Personen, Standorte und Kampagnen.</p>
+          <p className="sub">Eine Seite pro Zweck: für das Ganze, für einzelne Personen, Standorte oder Aktionen.</p>
         </div>
         {canEdit && (
           <button className="btn primary" onClick={() => setCreating(true)}>
@@ -98,9 +98,9 @@ export function PagesList() {
 }
 
 const TEMPLATES = [
-  { id: 'organisation', name: 'Organisation', text: 'Telefon, Termin, Leistungen, zwei Standorte' },
-  { id: 'person', name: 'Person', text: 'Person mit Schwerpunkten und Kontakt' },
-  { id: 'standort', name: 'Standort', text: 'Ein Standort mit Sprechzeiten und Anfahrt' },
+  { id: 'organisation', name: 'Organisation', text: 'Telefon, Termin, Angebot, Öffnungszeiten, zwei Standorte' },
+  { id: 'person', name: 'Person', text: 'Eine Person mit Kontakt und Links' },
+  { id: 'standort', name: 'Standort', text: 'Ein Standort mit Öffnungszeiten und Anfahrt' },
   { id: 'kampagne', name: 'Kampagne', text: 'Kurzer Text und eine klare Aktion' },
   { id: 'leer', name: 'Leer', text: 'Ohne Inhalte beginnen' },
 ] as const;

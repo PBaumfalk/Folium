@@ -7,7 +7,7 @@ import { isVisible, localToEpoch } from '../src/server/lib/schedule.js';
 const blk = (x: Record<string, unknown>): Block => ({ id: newBlockId(), enabled: true, visibleFrom: null, visibleUntil: null, ...x }) as Block;
 
 const content = (blocks: Block[] = []): PageContent => ({
-  profile: { name: 'Muster & Partner', tagline: 'Beratung in Musterstadt', details: ['Dr. Maria Muster'], logoAssetId: null, avatarAssetId: null, coverAssetId: null },
+  profile: { name: 'Muster & Partner', tagline: 'Beispiel in Musterstadt', details: ['Maria Muster'], logoAssetId: null, avatarAssetId: null, coverAssetId: null },
   blocks,
   legal: { imprintUrl: 'https://www.example.com/impressum/', privacyUrl: 'https://www.example.com/datenschutz/' },
   meta: { title: '', description: '', noindex: false, lang: 'de' },

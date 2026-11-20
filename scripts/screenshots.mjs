@@ -15,7 +15,7 @@ const shot = async (url, name, w, h, full = false, login = null, act = null) => 
   await ctx.close();
 };
 const adm = 'admin@example.test';
-for (const s of ['muster', 'boutique', 'signature']) {
+for (const s of ['cafe', 'studio', 'tischlerei']) {
   await shot(`${P}/${s}`, `oeffentlich-${s}-smartphone`, 390, 844);
   await shot(`${P}/${s}`, `oeffentlich-${s}-desktop`, 1440, 900);
 }

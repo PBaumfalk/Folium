@@ -4,7 +4,7 @@
 
 Folium kann die Gestaltung einer Homepage untersuchen und daraus mit Hilfe der KI Claude (Anthropic) drei Designvarianten für Ihre Linkseite vorschlagen. Das Ergebnis ist immer nur ein Vorschlag für den **Entwurf**. Sie sehen jede Variante mit Ihren eigenen Inhalten, bevor Sie etwas übernehmen, und nichts wird ohne **Veröffentlichen** öffentlich.
 
-> **Stand der Erprobung:** Der Aufruf der echten KI ist vollständig vorbereitet, wurde aber noch nicht mit einem echten API-Schlüssel getestet. Alle Bildschirmfotos in diesem Kapitel stammen aus einer Testumgebung mit einem **simulierten** KI-Anbieter. Was das bedeutet, steht unter [Simulierte Antworten](#simulierte-antworten).
+> **Stand der Erprobung:** Der Aufruf der echten KI ist vollständig vorbereitet, wurde aber noch nicht mit einem echten API-Schlüssel getestet. Alle Bildschirmfotos in diesem Kapitel stammen aus einer Testumgebung mit einem **simulierten** KI-Anbieter; untersucht wird dort die erfundene Homepage des Beispiel-Cafés „Café Lindenblatt“. Was das bedeutet, steht unter [Simulierte Antworten](#simulierte-antworten).
 
 Die Funktion steht der Rolle **Redaktion** und **Admin** zur Verfügung. Sie öffnen sie im Reiter **Design** mit dem Knopf **Design aus Homepage übernehmen**. Der Ablauf hat drei Schritte, die oben im Fenster angezeigt werden: **1 Adresse**, **2 Übertragung prüfen**, **3 Varianten vergleichen**.
 

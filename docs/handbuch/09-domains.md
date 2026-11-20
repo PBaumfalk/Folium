@@ -11,7 +11,7 @@ Jede veröffentlichte Seite hat eine Adresse unter der **Standardadresse** von F
 Die Standardadresse legt die IT einmalig in der Konfiguration fest (`PUBLIC_BASE_URL`, siehe [Kapitel 15](15-konfiguration.md)), z. B. `https://links.example.com`. Jede veröffentlichte Seite ist dort unter ihrer Adresse erreichbar:
 
 ```
-https://links.example.com/muster
+https://links.example.com/cafe
 https://links.example.com/maria-muster
 ```
 
@@ -46,12 +46,12 @@ Mögliche Meldungen beim Eintragen:
 | Aufruf | Ergebnis |
 | --- | --- |
 | `https://links.maria-muster.de/` | die gewählte Startseite (veröffentlichte Fassung); ohne Startseite die Hinweisseite „Diese Seite gibt es nicht.“ |
-| `https://links.maria-muster.de/muster` | jede veröffentlichte Seite unter ihrer Adresse, genau wie unter der Standardadresse |
+| `https://links.maria-muster.de/cafe` | jede veröffentlichte Seite unter ihrer Adresse, genau wie unter der Standardadresse |
 | eine Domain, die nicht eingetragen ist | Hinweisseite „Diese Seite gibt es nicht.“, auch wenn sie technisch beim Server ankommt |
 
 Gut zu wissen:
 
-- Kanonische Adresse (für Suchmaschinen): Die Startseite, aufgerufen über die Wurzel der Domain, nennt diese Wurzel, z. B. `https://links.maria-muster.de/`. Wird eine Seite über einen Pfad auf der Domain aufgerufen (etwa `https://links.maria-muster.de/muster`), nennt sie ihre Adresse unter der Standardadresse, z. B. `https://links.example.com/muster`.
+- Kanonische Adresse (für Suchmaschinen): Die Startseite, aufgerufen über die Wurzel der Domain, nennt diese Wurzel, z. B. `https://links.maria-muster.de/`. Wird eine Seite über einen Pfad auf der Domain aufgerufen (etwa `https://links.maria-muster.de/cafe`), nennt sie ihre Adresse unter der Standardadresse, z. B. `https://links.example.com/cafe`.
 - Liegt die Startseite im Papierkorb oder ist sie nicht veröffentlicht, zeigt die Domain-Wurzel die Hinweisseite. Wird die Seite endgültig gelöscht (nach Ablauf der Papierkorbfrist), entfernt Folium die Zuordnung; die Domain bleibt eingetragen und zeigt auf „keine Seite“.
 - Aufrufe und Klicks zählt Folium unabhängig davon, über welche Domain eine Seite aufgerufen wurde. Die Statistik unterscheidet Domains nicht ([Kapitel 8](08-statistik.md)).
 

@@ -32,7 +32,7 @@ describe('Merkmalsanalyse (ohne Browser)', () => {
   });
 
   it('finds the logo', () => {
-    expect(f.logo[0].url).toBe('https://www.example.com/assets/logo/muster-logo.svg');
+    expect(f.logo[0].url).toBe('https://www.example.com/assets/logo/lindenblatt-logo.svg');
     expect(f.logo[0].kind).toBe('svg');
   });
 
@@ -44,8 +44,8 @@ describe('Merkmalsanalyse (ohne Browser)', () => {
   });
 
   it('collects text sample and title, capped', () => {
-    expect(f.title).toContain('Muster');
-    expect(f.textSample).toContain('Beratung');
+    expect(f.title).toContain('Lindenblatt');
+    expect(f.textSample).toContain('Backstube');
     expect(f.textSample.length).toBeLessThanOrEqual(4000);
     expect(f.textSample).not.toContain('<');
   });
