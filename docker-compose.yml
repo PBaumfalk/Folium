@@ -1,0 +1,69 @@
+# Folium starten:      docker compose up -d --build
+# Einrichtungscode:    docker compose logs folium | grep Einrichtungscode
+# Ausführlich:         docs/handbuch/13-installation.md
+
+name: folium
+
+services:
+  folium:
+    image: ${FOLIUM_IMAGE:-folium:latest}
+    build: .
+    restart: unless-stopped
+    init: true
+    env_file:
+      - path: ${FOLIUM_ENV_FILE:-.env}
+        required: false
+    environment:
+      DATA_DIR: /data
+      TZ: ${TZ:-Europe/Berlin}
+      BROWSER_WS_URL: ${BROWSER_WS_URL-ws://folium-browser:3000/}
+    ports:
+      # Öffentlich: nur veröffentlichte Linkseiten. Diesen Port gibt der Reverse Proxy für die öffentliche Domain frei.
+      - "${PUBLIC_BIND:-127.0.0.1}:${PUBLIC_HOST_PORT:-8080}:8080"
+      # Verwaltung: Oberfläche und API. Nur intern bzw. über VPN/Proxy mit Zugriffsschutz erreichbar machen.
+      - "${ADMIN_BIND:-127.0.0.1}:${ADMIN_HOST_PORT:-8081}:8081"
+    volumes:
+      - folium-data:/data
+    networks: [default, folium-intern]
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    mem_limit: 768m
+    pids_limit: 200
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "5" }
+
+  # Abgeschotteter Browser für Bildschirmfotos der Homepage-Analyse (optional).
+  # Hängt nur am internen Netz ohne Internetzugang; Folium beantwortet alle seine Anfragen selbst.
+  folium-browser:
+    build:
+      context: docker
+      dockerfile: browser.Dockerfile
+    image: ${FOLIUM_BROWSER_IMAGE:-folium-browser:1.65.1}
+    restart: unless-stopped
+    init: true
+    networks: [folium-intern]
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m
+      - /home/pwuser:size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    mem_limit: 1g
+    pids_limit: 300
+    shm_size: 256m
+    logging:
+      driver: json-file
+      options: { max-size: "5m", max-file: "3" }
+
+networks:
+  folium-intern:
+    internal: true
+
+volumes:
+  folium-data:

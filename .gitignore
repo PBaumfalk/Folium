@@ -1,0 +1,20 @@
+node_modules/
+dist/
+data/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+.superpowers/
+.DS_Store
+*.log
+data-demo/
+data-e2e/
+
+# Lokale Arbeitsdateien (nicht im Repository)
+kanzlei/
+entwuerfe/
+docs/superpowers/
+CLAUDE.md
+docs/pruefbericht-ki.json
