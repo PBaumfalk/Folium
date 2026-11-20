@@ -2,7 +2,7 @@
 
 # 23 — Bekannte Einschränkungen
 
-Was Folium bewusst nicht kann, welche kleineren Punkte offen sind und was nicht unter Realbedingungen geprüft ist. Stand: Version 0.1.0.
+Was Folium bewusst nicht kann, welche kleineren Punkte offen sind und was nicht unter Realbedingungen geprüft ist. Stand: Version 0.1.1.
 
 ## Betrieb
 

@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-export const VERSION = process.env.FOLIUM_BUILD_VERSION ?? '0.1.0-dev';
+export const VERSION = process.env.FOLIUM_BUILD_VERSION ?? '0.1.1-dev';
 
 export interface Config {
   version: string;

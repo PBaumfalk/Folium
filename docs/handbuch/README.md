@@ -7,7 +7,7 @@ Teil A richtet sich an alle, die Seiten anlegen, gestalten und teilen,
 und setzt keine technischen Vorkenntnisse voraus. Teil B ist für Admins, Teil C
 für die IT, die Folium installiert und betreibt.
 
-Stand: Version 0.1.0.
+Stand: Version 0.1.1.
 
 ## Inhalt
 

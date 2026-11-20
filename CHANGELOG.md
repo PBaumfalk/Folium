@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## 0.1.1 – 20.11.2026
+
+- **Für alle Branchen:**
+  - README und Handbuch stellen Folium als Linktree-Alternative für jede Organisation und Person vor, mit dem neuen Abschnitt „Wofür?“
+  - Die Demo zeigt drei verschiedene erfundene Beispiele: Café, Yoga-Studio und Tischlerei, je eine Designrichtung.
+- **Vorlagen und Oberfläche:**
+  - Die Vorlagen „Organisation“ und „Person“ sind allgemeiner formuliert.
+  - Die Designvorschau zeigt „Ihr Name“.
+  - Das Feld heißt jetzt „Öffnungs- oder Sprechzeiten“.
+- **Testmaterial:** Die Test-Homepage ist die erfundene Homepage des Beispiel-Cafés.
+
 ## 0.1.0 – 20.11.2026
 
 Erste öffentliche Version.

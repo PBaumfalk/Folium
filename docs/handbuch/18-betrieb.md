@@ -121,7 +121,7 @@ Beide Ports beantworten `GET /healthz`:
 | Adresse | Antwort | Prüft |
 | --- | --- | --- |
 | öffentlich, z. B. `https://links.example.com/healthz` | `{"ok":true}` | öffentlicher Server läuft |
-| Verwaltung, z. B. `https://folium.intranet.example.com/healthz` | `{"ok":true,"version":"0.1.0"}` | Verwaltung läuft, Datenbank antwortet |
+| Verwaltung, z. B. `https://folium.intranet.example.com/healthz` | `{"ok":true,"version":"0.1.1"}` | Verwaltung läuft, Datenbank antwortet |
 
 Das Docker-Image prüft beide alle 30 Sekunden selbst (`folium health`, Zeitlimit 5 s, 3 Versuche, 20 s Anlaufzeit). Für eine externe Überwachung (z. B. Uptime Kuma) eignet sich die öffentliche Adresse; sie prüft dabei auch Proxy und Zertifikat. Für den Dienst `folium-browser` gibt es keine eigene Gesundheitsprüfung; ob Bildschirmfotos funktionieren, zeigt eine Homepage-Analyse.
 
@@ -134,7 +134,7 @@ docker compose exec folium folium <befehl>
 | Befehl | Wirkung |
 | --- | --- |
 | `health` | prüft beide Ports; Ausgabe `öffentlich: ok, Verwaltung: ok`, Rückgabewert 0 bzw. 1 |
-| `version` | zeigt die Version, z. B. `Folium 0.1.0` |
+| `version` | zeigt die Version, z. B. `Folium 0.1.1` |
 | `konten` | listet alle Konten: Nummer, Rolle (`admin`, `editor`, `viewer`), `aktiv`/`gesperrt`, E-Mail |
 | `passwort <e-mail>` | setzt ein neues zufälliges Passwort, zeigt es einmalig an und beendet alle Sitzungen des Kontos |
 | `sicherung` | legt sofort eine Sicherung `folium-…-manuell` an |

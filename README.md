@@ -113,8 +113,8 @@ docker compose logs folium    # Einrichtungscode ablesen
 ```
 
 Ohne eigenes Bauen: in `.env`
-`FOLIUM_IMAGE=ghcr.io/pbaumfalk/folium:0.1.0` und
-`FOLIUM_BROWSER_IMAGE=ghcr.io/pbaumfalk/folium-browser:0.1.0` setzen, dann
+`FOLIUM_IMAGE=ghcr.io/pbaumfalk/folium:0.1.1` und
+`FOLIUM_BROWSER_IMAGE=ghcr.io/pbaumfalk/folium-browser:0.1.1` setzen, dann
 `docker compose pull && docker compose up -d`. Fertige Images gibt es für amd64
 und arm64.
 

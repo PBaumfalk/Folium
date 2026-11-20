@@ -1,6 +1,6 @@
 {
   "name": "folium",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Folium – selbst gehostete Linkseiten mit Entwurf, Versionen und Design aus der Homepage",
   "private": true,
   "license": "MIT",

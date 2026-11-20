@@ -16,7 +16,7 @@ RUN npm run build && npm prune --omit=dev --no-audit --no-fund \
   && node -e "new (require('better-sqlite3'))(':memory:').prepare('select 1').get(); require('sharp')"
 
 FROM node:24-bookworm-slim
-ARG FOLIUM_VERSION=0.1.0
+ARG FOLIUM_VERSION=0.1.1
 LABEL org.opencontainers.image.title="Folium" \
       org.opencontainers.image.description="Selbst gehostete Linkseiten mit Entwurf, Versionen und Design aus der Homepage" \
       org.opencontainers.image.version="${FOLIUM_VERSION}" \
