@@ -31,9 +31,7 @@ Wenn Sie wissen wollen, über welchen Weg Besucher kommen, hängen Sie an die Ad
 
 Die Statistik zeigt jede Quelle in einer eigenen Zeile, `qr` als **QR-Code**, Besuche ohne Kennwort als **Direkt / unbekannt** ([Kapitel 8](08-statistik.md#quellen)).
 
-Regeln für das Kennwort: nur Kleinbuchstaben a–z, Ziffern und Bindestrich, höchstens 32 Zeichen. Alles andere zählt Folium als „Direkt / unbekannt“.
-
-> **Gut zu wissen:** Verwenden Sie das Kennwort immer klein geschrieben. Bei `?src=Instagram` ordnet Folium die Aufrufe zwar der Quelle `instagram` zu, die Klicks auf Einträge aber „Direkt / unbekannt“.
+Regeln für das Kennwort: nur Buchstaben a–z, Ziffern und Bindestrich, höchstens 32 Zeichen. Alles andere zählt Folium als „Direkt / unbekannt“. Groß- und Kleinschreibung spielt keine Rolle: Folium schreibt das Kennwort klein, `?src=Instagram` zählt Aufrufe und Klicks also unter `instagram`.
 
 ## QR-Code
 
@@ -79,7 +77,7 @@ In Tessera gestalten Sie den Code dann mit Logo, Farben, Rahmen und Druckvorscha
 
 Ist Tessera nicht angebunden, fehlt der Knopf, und Folium weist darauf hin: *Für Logo, Rahmen und Druckvorschau lässt sich Tessera anbinden (TESSERA_URL und TESSERA_TOKEN).*
 
-Folium nutzt für Filum und Tessera nur deren vorhandene Schnittstellen und verändert an den beiden Programmen nichts. Kurzlinks und Codes anlegen kann die Rolle **Redaktion** oder **Admin**.
+Folium nutzt für Filum und Tessera nur deren vorhandene Schnittstellen und verändert an den beiden Programmen nichts. Kurzlinks und Codes anlegen kann die Rolle **Redaktion** oder **Admin**. Mit der Rolle **Ansehen** fehlen die Knöpfe **Kurzlink in Filum anlegen** und **In Tessera gestalten**; bei angebundenem Filum steht dort stattdessen *Kurzlinks legen Redaktion oder Admin an.*
 
 ---
 

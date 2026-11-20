@@ -1,4 +1,4 @@
-import { pageContentSchema, type PageContent } from '../../shared/content.js';
+import { missingTarget, pageContentSchema, type PageContent } from '../../shared/content.js';
 import { PRESETS, themeSchema, type PresetId, type Theme } from '../../shared/theme.js';
 import { zodToAppError } from '../admin/http.js';
 import type { DB } from '../db/db.js';
@@ -215,6 +215,11 @@ export class Pages {
       throw new AppError(422, 'legal_missing', 'Vor dem Veröffentlichen bitte die Links zu Impressum und Datenschutzerklärung eintragen (Bereich „Seite“).');
     }
     if (!content.profile.name.trim()) throw new AppError(422, 'name_missing', 'Bitte einen Namen im Kopf der Seite eintragen.');
+    const open = content.blocks.filter((b) => b.enabled && missingTarget(b));
+    if (open.length) {
+      const names = open.map((b) => `„${b.type === 'link' ? b.title : b.type === 'action' ? b.label : ''}“`).join(', ');
+      throw new AppError(422, 'target_missing', `Bei ${names} fehlt noch das Ziel. Bitte ergänzen oder den Eintrag ausblenden.`);
+    }
   }
 
   publish(id: number, note: string, p: Principal | null, rev?: number) {

@@ -39,9 +39,10 @@ export function ensureDataDir(dir: string): void {
   }
 }
 
-export async function createApp(config: Config, log: Logger) {
+export async function createApp(config: Config, log: Logger, opts: { applyRestore?: boolean } = {}) {
   ensureDataDir(config.dataDir);
-  const restore = applyStagedRestore(config);
+  // Die Kommandozeile läuft neben dem Server und darf eine vorgemerkte Wiederherstellung nicht vorziehen
+  const restore = opts.applyRestore === false ? { restored: false } : applyStagedRestore(config);
   if (restore.restored) log.warn({ previous: restore.previous }, 'Sicherung wiederhergestellt; der vorherige Stand wurde gesichert');
   fs.mkdirSync(config.assetDir, { recursive: true });
   const db = openDatabase(config.dbPath, log, config.backupDir);

@@ -55,6 +55,8 @@ const int = (v: string | undefined, d: number) => {
   const n = Number(v);
   return Number.isFinite(n) && v !== undefined && v !== '' ? Math.floor(n) : d;
 };
+/** Zahl mit Nachkommastellen; 0 ist ein gültiger Wert. */
+const num = (v: string | undefined, d: number) => (v !== undefined && v.trim() !== '' && Number.isFinite(Number(v)) && Number(v) >= 0 ? Number(v) : d);
 const bool = (v: string | undefined, d = false) => (v === undefined || v === '' ? d : ['1', 'true', 'yes', 'ja', 'on'].includes(v.toLowerCase()));
 const trimSlash = (s: string) => s.replace(/\/+$/, '');
 
@@ -87,7 +89,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
       model: env.AI_MODEL || 'claude-opus-5-5',
       dailyLimit: int(env.AI_DAILY_LIMIT, 30),
       hourlyPerUser: int(env.AI_HOURLY_PER_USER, 10),
-      monthlyBudgetEur: Number(env.AI_MONTHLY_BUDGET_EUR ?? 20) || 20,
+      monthlyBudgetEur: num(env.AI_MONTHLY_BUDGET_EUR, 20),
       timeoutMs: int(env.AI_TIMEOUT_MS, 120_000),
     },
     browserWsUrl: env.BROWSER_WS_URL ?? '',

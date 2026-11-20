@@ -31,7 +31,7 @@ docker compose up -d
 | `SECURE_COOKIES` | Sitzungscookie nur über HTTPS senden | ja, wenn `APP_URL` mit `https://` beginnt, sonst nein |
 | `SETUP_CODE` | eigener Einrichtungscode für das erste Admin-Konto | zufällig (Form `123-456-789`), steht im Log |
 | `LOG_LEVEL` | Detailgrad der Logs: `fatal`, `error`, `warn`, `info`, `debug`, `trace` | `info` |
-| `APP_TIMEZONE` | Zeitzone für Tagesgrenzen der Statistik und für „sichtbar ab/bis“ von Einträgen | `Europe/Berlin` |
+| `APP_TIMEZONE` | Zeitzone für Tagesgrenzen der Statistik, für „sichtbar ab/bis“ von Einträgen und für alle Datums- und Uhrzeitangaben in der Verwaltungsoberfläche | `Europe/Berlin` |
 | `DATA_DIR` | Datenverzeichnis (Datenbank, Dateien, Sicherungen) | `./data`; im Container `/data` |
 | `HOST` | Adresse, auf der Folium lauscht | `0.0.0.0` |
 | `PUBLIC_PORT` | öffentlicher Port im Container | `8080` |
@@ -52,7 +52,7 @@ docker compose up -d
 | `AI_TIMEOUT_MS` | Zeitlimit eines KI-Aufrufs in Millisekunden | `120000` |
 | `AI_FAKE_MODE` | nur Tests, nur mit `AI_PROVIDER=fake`: Art der simulierten Antwort | `valid` |
 
-`AI_MONTHLY_BUDGET_EUR=0` wird als „nicht gesetzt“ gelesen und ergibt 20 €. Um die KI abzuschalten, `AI_PROVIDER=none` setzen. Mehr in [Kapitel 19](19-ki-anbindung.md).
+`AI_MONTHLY_BUDGET_EUR=0` bedeutet 0 €: Jeder echte KI-Aufruf wird dann als „Monatsbudget ausgeschöpft“ abgelehnt. Nachkommastellen sind erlaubt (`7.5`); leere, negative oder ungültige Werte ergeben 20 €. Um die KI ganz abzuschalten, ist `AI_PROVIDER=none` der klarere Weg. Mehr in [Kapitel 19](19-ki-anbindung.md).
 
 ## Homepage-Analyse
 
@@ -84,7 +84,7 @@ Erst wenn Adresse **und** Token gesetzt sind, gilt die Verbindung als eingericht
 | `OIDC_CLIENT_SECRET` | Client-Secret aus authentik | – |
 | `OIDC_ADMIN_GROUPS` | Gruppen, deren Mitglieder Admin werden (Liste) | leer |
 | `OIDC_EDITOR_GROUPS` | Gruppen, deren Mitglieder Redaktion werden (Liste) | leer |
-| `OIDC_DEFAULT_ROLE` | Rolle ohne passende Gruppe: `viewer` (Ansehen), `editor`, `admin` oder `none` (Anmeldung abweisen). Unbekannte Werte gelten als `viewer`. | `viewer` |
+| `OIDC_DEFAULT_ROLE` | Rolle für **neue** Konten ohne passende Gruppe: `viewer` (Ansehen), `editor`, `admin` oder `none` (Anmeldung abweisen). Bestehende Konten ohne passende Gruppe behalten ihre Rolle; bei `none` wird ihre Anmeldung ebenfalls abgewiesen. Unbekannte Werte gelten als `viewer`. | `viewer` |
 | `OIDC_BUTTON_LABEL` | Beschriftung des Knopfs auf der Anmeldeseite | `Mit authentik anmelden` |
 | `DISABLE_LOCAL_LOGIN` | Anmeldung mit Passwort abschalten (nur noch OIDC) | nein |
 
@@ -95,9 +95,9 @@ Einrichtung in [Kapitel 16](16-anmeldung-oidc.md).
 | Variable | Bedeutung | Standard |
 | --- | --- | --- |
 | `BACKUP_INTERVAL_HOURS` | Abstand automatischer Sicherungen in Stunden; `0` schaltet sie ab | `24` |
-| `BACKUP_KEEP` | so viele automatische Sicherungen behalten (manuelle werden nie automatisch gelöscht) | `14` |
+| `BACKUP_KEEP` | so viele automatische Sicherungen behalten (manuelle werden nie automatisch gelöscht); `0` behält alle | `14` |
 
-`BACKUP_KEEP` mindestens auf `1` setzen: Mit `0` löscht Folium jede automatische Sicherung direkt nach dem Anlegen. Mehr in [Kapitel 17](17-sicherung.md).
+Mit `BACKUP_KEEP=0` löscht Folium keine automatische Sicherung; den Platz auf dem Datenträger behält dann die IT im Blick. Mehr in [Kapitel 17](17-sicherung.md).
 
 ## Nur in docker-compose.yml
 

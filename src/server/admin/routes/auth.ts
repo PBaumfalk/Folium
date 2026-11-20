@@ -22,6 +22,9 @@ export function registerAuthRoutes(app: FastifyInstance, ctx: Ctx) {
       needsSetup: ctx.auth.userCount() === 0,
       version: ctx.config.version,
       publicBaseUrl: ctx.config.publicBaseUrl,
+      timezone: ctx.config.timezone,
+      trashDays: ctx.settings.all().trashDays,
+      defaultPreset: ctx.settings.all().defaultPreset,
       localLogin: !ctx.config.disableLocalLogin,
       oidc: ctx.config.oidc ? { label: ctx.config.oidc.buttonLabel } : null,
       integrations: {

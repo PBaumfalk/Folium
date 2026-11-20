@@ -67,6 +67,9 @@ export interface Session {
   needsSetup: boolean;
   version: string;
   publicBaseUrl: string;
+  timezone: string;
+  trashDays: number;
+  defaultPreset: 'editorial' | 'boutique' | 'signature';
   localLogin: boolean;
   oidc: { label: string } | null;
   integrations: { ai: { provider: string; model: string; simulated: boolean } | null; filum: boolean; tessera: boolean; browser: boolean };

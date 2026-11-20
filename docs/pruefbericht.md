@@ -1,14 +1,14 @@
 # Prüfbericht Folium 0.1.0
 
-Stand 17.11.2026. Alle Prüfungen sind wiederholbar (Befehle jeweils angegeben).
+Stand 20.11.2026. Alle Prüfungen sind wiederholbar (Befehle jeweils angegeben).
 
 ## Ergebnis auf einen Blick
 
 | Prüfung | Befehl | Ergebnis |
 | --- | --- | --- |
-| Server-Tests (Unit/Integration) | `npm test` | **127 bestanden**, 1 übersprungen (Live-KI ohne Schlüssel) |
+| Server-Tests (Unit/Integration) | `npm test` | **136 bestanden**, 1 übersprungen (Live-KI ohne Schlüssel), 137 Tests in 18 Dateien |
 | Typprüfung Server und Oberfläche | `npm run typecheck` | ohne Fehler |
-| Browser-Tests (Chromium Desktop 1440 px und Pixel 7) | `scripts/e2e-local.sh` | **31 bestanden** |
+| Browser-Tests (Chromium Desktop 1440 px und Pixel 7) | `scripts/e2e-local.sh` | **33 bestanden** |
 | Barrierefreiheit (axe-core) | in den Browser-Tests | 0 Verstöße auf 3 öffentlichen Seiten und 8 Verwaltungsansichten |
 | Container-Lebenszyklus | `scripts/docker-lifecycle-test.sh` | **alle Prüfungen bestanden** (Ausgabe unten) |
 | Sichtprüfung | `node scripts/screenshots.mjs` | 23 Ansichten in `docs/screenshots/`, geprüft und korrigiert |
@@ -17,12 +17,14 @@ Stand 17.11.2026. Alle Prüfungen sind wiederholbar (Befehle jeweils angegeben).
 
 Ein frischer Prüfagent hat den gesamten Code gelesen: **0 kritische, 4 wichtige Befunde**, alle behoben und mit Regressionstests belegt (`tests/review-fixes.test.ts`): Endlosschleife bei langen Adressen beim Duplizieren/Import, Absturz bei beschädigtem ZIP, fehlende Bildschirmfotos bei Seiten mit vielen Bildern, Veröffentlichen ohne Revisionsprüfung. Zusätzlich behoben: Prototyp-Schlüssel als Schrift, drei IPv6-Bereiche in der SSRF-Sperre, Fehler bei Kleinstdateien, Seiten-Cache je Domain, Positivliste für festgehaltene Werte. Bewusst offen (gering, eingedämmt): siehe Abschnitt „Bekannte kleinere Punkte“.
 
+Beim Schreiben des Handbuchs fielen weitere Fehler auf, die vor 0.1.0 behoben und mit Regressionstests belegt sind (`tests/release-fixes.test.ts`, dazu zwei Browser-Tests in `e2e/flows.spec.ts`): Standard-Designrichtung wirkt, Papierkorbfrist und Zeitzone in der Oberfläche aus den Einstellungen, Einträge ohne Ziel im Entwurf (Veröffentlichen mit `target_missing` abgelehnt), `?src=` bei Klicks unabhängig von der Schreibweise, Fehlermeldung der OIDC-Anmeldung auf der Anmeldeseite, OIDC behält von Hand gesetzte Rollen ohne passende Gruppe, Serverfehler im Protokoll, `AI_MONTHLY_BUDGET_EUR=0` und `BACKUP_KEEP=0` wörtlich genommen, keine Kollision bei Sicherungen in derselben Sekunde, Kommandozeile wendet keine vorgemerkte Wiederherstellung an, kanonische Adresse auf weiteren Domains.
+
 ## Bekannte kleinere Punkte
 
 - SVG-Bereinigung dekodiert numerische Entitäten nicht vor der Prüfung (eingedämmt durch CSP und Einbindung als `<img>`).
 - Import liest Bilder vor der Prüfung der Seiten ein (bei fehlerhaftem Archiv bleiben Dateien ohne Verwendung zurück).
 - Ein gesperrtes letztes Admin-Konto lässt sich nicht löschen.
-- Zwei Sicherungen in derselben Sekunde kollidieren; manuelle Sicherungen werden nicht automatisch ausgedünnt.
+- Manuelle Sicherungen werden nicht automatisch ausgedünnt.
 - KI-Tageslimit wechselt um Mitternacht UTC.
 - Umbenennen und Entwurfsspeichern sind nicht atomar.
 - Die Verwaltungsoberfläche hat keine eigene CSP.

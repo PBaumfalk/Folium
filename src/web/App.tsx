@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { BarChart3, FileStack, LogOut, Settings as Cog, Trash2 } from 'lucide-react';
 import { createContext, useContext } from 'react';
 import { NavLink, Navigate, Route, Routes } from 'react-router';
-import { Loading } from './components/ui';
+import { Loading, setDisplayTimeZone } from './components/ui';
 import { api, can, type Session } from './lib/api';
 import { Login, Setup } from './pages/Auth';
 import { PageEditor } from './pages/PageEditor';
@@ -21,6 +21,7 @@ export function App() {
   if (s.isLoading) return <div className="auth"><Loading /></div>;
   if (s.error || !s.data) return <div className="auth"><div className="card">Der Server ist nicht erreichbar. Bitte später erneut versuchen.</div></div>;
   const session = s.data;
+  if (session?.timezone) setDisplayTimeZone(session.timezone);
   if (session.needsSetup) return <Setup />;
   if (!session.user) return <Login session={session} />;
 

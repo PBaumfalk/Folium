@@ -84,10 +84,10 @@ docker compose logs folium | grep '"level":50' # nur Fehler
 | --- | --- |
 | 30 | Information, z. B. „Folium gestartet“ (mit Ports und Version), Migrationen |
 | 40 | Warnung, z. B. Einrichtungscode, „OIDC-Anmeldung fehlgeschlagen“, „Statistik konnte nicht gespeichert werden“ |
-| 50 | Fehler, z. B. „Automatische Sicherung fehlgeschlagen“, „Pflegeaufgabe fehlgeschlagen“ |
+| 50 | Fehler, z. B. „Automatische Sicherung fehlgeschlagen“, „Pflegeaufgabe fehlgeschlagen“, „Unerwarteter Fehler“ (Fehler der Verwaltung, die die Oberfläche als *Ein unerwarteter Fehler ist aufgetreten. Details stehen im Serverprotokoll.* meldet; mit Methode, Adresse der Anfrage und Fehlermeldung) |
 | 60 | Folium konnte nicht starten |
 
-Zeitstempel sind in UTC. Mehr Details mit `LOG_LEVEL=debug` in der `.env` und `docker compose up -d`. Folium protokolliert keine einzelnen Anfragen, keine IP-Adressen, keine Passwörter und keine Tokens.
+Zeitstempel sind in UTC. Mehr Details mit `LOG_LEVEL=debug` in der `.env` und `docker compose up -d`. Folium protokolliert keine einzelnen Anfragen (außer bei unerwarteten Fehlern, siehe oben), keine IP-Adressen, keine Passwörter und keine Tokens.
 
 ### Wenn Folium nicht startet
 
@@ -139,7 +139,7 @@ docker compose exec folium folium <befehl>
 | `passwort <e-mail>` | setzt ein neues zufälliges Passwort, zeigt es einmalig an und beendet alle Sitzungen des Kontos |
 | `sicherung` | legt sofort eine Sicherung `folium-…-manuell` an |
 
-Ohne Befehl zeigt `folium` die Liste der Befehle. Die Befehle `konten`, `passwort` und `sicherung` öffnen die Datenbank in einem zweiten Prozess neben dem laufenden Folium. Führen Sie sie **nicht** aus, solange eine Wiederherstellung vorgemerkt ist: Der zweite Prozess würde sie sonst sofort anwenden, während Folium noch läuft.
+Ohne Befehl zeigt `folium` die Liste der Befehle. Die Befehle `konten`, `passwort` und `sicherung` öffnen die Datenbank in einem zweiten Prozess neben dem laufenden Folium. Eine vorgemerkte Wiederherstellung wenden sie nicht an; das geschieht nur beim Neustart des Dienstes ([Kapitel 17](17-sicherung.md#wiederherstellen)).
 
 ## Ressourcen
 

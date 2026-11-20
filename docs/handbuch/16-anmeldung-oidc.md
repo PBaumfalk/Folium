@@ -38,23 +38,24 @@ Dann `docker compose up -d`. Auf der Anmeldeseite erscheint der Knopf **Mit auth
 
 ## Gruppen und Rollen
 
-Die Rolle ergibt sich bei **jeder** Anmeldung aus den Gruppen in dieser Reihenfolge:
+Bei jeder Anmeldung prüft Folium die Gruppen in dieser Reihenfolge:
 
 | Bedingung | Rolle in Folium |
 | --- | --- |
 | mindestens eine Gruppe aus `OIDC_ADMIN_GROUPS` | Admin |
 | sonst mindestens eine Gruppe aus `OIDC_EDITOR_GROUPS` | Redaktion |
-| sonst | `OIDC_DEFAULT_ROLE` (Standard `viewer` = Ansehen) |
+| sonst, **neues** Konto | `OIDC_DEFAULT_ROLE` (Standard `viewer` = Ansehen) |
+| sonst, **bestehendes** Konto | bisherige Rolle bleibt (auch eine in Folium von Hand gesetzte) |
 | `OIDC_DEFAULT_ROLE=none` und keine passende Gruppe | Anmeldung abgewiesen („Ihr Konto ist für Folium nicht freigeschaltet.“) |
 
-Die Gruppennamen werden exakt verglichen (Groß-/Kleinschreibung zählt). Eine in Folium von Hand geänderte Rolle überschreibt die nächste Anmeldung wieder. Wer nur ausgewählten Personen Zugang geben will, setzt `OIDC_DEFAULT_ROLE=none` und steuert alles über die Gruppen.
+Die Gruppennamen werden exakt verglichen (Groß-/Kleinschreibung zählt). Passt eine Gruppe, setzt sie die Rolle bei **jeder** Anmeldung neu; eine in Folium von Hand geänderte Rolle wird dann überschrieben. Passt keine Gruppe, bleibt die von Hand gesetzte Rolle erhalten. Wer nur ausgewählten Personen Zugang geben will, setzt `OIDC_DEFAULT_ROLE=none` und steuert alles über die Gruppen.
 
 ## Was bei der Anmeldung passiert
 
 1. Der Knopf führt zu `APP_URL/api/v1/auth/oidc/start`. Folium merkt sich den Vorgang 10 Minuten lang (Kennung im Cookie `folium_oidc`, die Prüfwerte selbst nur im Arbeitsspeicher) und leitet zu authentik weiter.
 2. Nach der Anmeldung kommt die Person über die Redirect URI zurück. Folium prüft Code, `state` und `nonce`, liest Angaben aus ID-Token und UserInfo.
 3. Folium sucht das Konto:
-   - Gibt es schon ein Konto mit demselben Aussteller und derselben Kennung (`sub`), wird es verwendet; Name und Rolle werden aktualisiert.
+   - Gibt es schon ein Konto mit demselben Aussteller und derselben Kennung (`sub`), wird es verwendet; der Name wird aktualisiert, die Rolle nur, wenn eine Gruppe passt.
    - Sonst: Gibt es ein lokales Konto mit derselben E-Mail-Adresse, wird es **nur dann** verknüpft, wenn authentik die E-Mail-Adresse als bestätigt meldet (`email_verified`). Andernfalls wird die Anmeldung abgelehnt („Für diese E-Mail-Adresse gibt es schon ein lokales Konto. …“).
    - Sonst legt Folium ein neues Konto an. Liefert authentik keine E-Mail-Adresse, verwendet Folium `<sub>@oidc.invalid`.
 4. Folium legt eine Sitzung an (14 Tage) und schreibt `login.oidc` mit den Gruppen ins Protokoll.
@@ -65,7 +66,7 @@ Gut zu wissen:
 - In Folium **gesperrte** Konten kommen auch über authentik nicht hinein.
 - Folium speichert keine Tokens von authentik, nur Aussteller und `sub` zur Wiedererkennung.
 - Startet Folium während einer laufenden Anmeldung neu, ist der gemerkte Vorgang verloren; die Person beginnt die Anmeldung neu.
-- Fehlgeschlagene Anmeldungen führen zurück auf die Anmeldeseite. Eine Meldung zeigt die Seite derzeit nicht an; die Ursache steht im Log:
+- Fehlgeschlagene Anmeldungen führen zurück auf die Anmeldeseite, die den Grund oben anzeigt, etwa *Ihr Konto ist für Folium nicht freigeschaltet.*, *Dieses Konto ist gesperrt.* oder, wenn der gemerkte Vorgang fehlt, *Die Anmeldung hat zu lange gedauert oder wurde in einem anderen Fenster begonnen. Bitte erneut versuchen.* Unerwartete Fehler erscheinen als *Die Anmeldung über authentik ist fehlgeschlagen.*; die genaue Ursache steht im Log:
 
 ```bash
 docker compose logs folium | grep "OIDC-Anmeldung fehlgeschlagen"
@@ -88,7 +89,7 @@ Danach blendet die Anmeldeseite die Felder für E-Mail und Passwort aus; die Sch
 ## Prüfen
 
 1. Mit einem Testkonto in der Gruppe `folium-redaktion` anmelden: Rolle „Redaktion“ unter **Einstellungen → Konten** (Zusatz „· authentik“).
-2. Testkonto aus der Gruppe nehmen, erneut anmelden: Rolle entspricht `OIDC_DEFAULT_ROLE` bzw. Anmeldung abgewiesen.
+2. Testkonto aus der Gruppe nehmen, erneut anmelden: Das Konto behält seine bisherige Rolle (bei `OIDC_DEFAULT_ROLE=none`: Anmeldung abgewiesen, die Anmeldeseite nennt den Grund). Ein neues Testkonto ohne Gruppe erhält `OIDC_DEFAULT_ROLE`.
 3. Testkonto in Folium sperren: Anmeldung über authentik scheitert.
 
 ---

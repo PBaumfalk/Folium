@@ -55,8 +55,10 @@ export function actionHref(kind: 'call' | 'email' | 'booking' | 'contact', value
   return validateUrl(value, ['http', 'https', 'tel', 'mailto']);
 }
 
+/** Ziel-Adresse. Leer ist im Entwurf erlaubt (noch nicht ausgefüllt); veröffentlicht wird so ein Eintrag nicht. */
 const url = (allowed: Scheme[]) =>
   z.string().max(2000).transform((v, c) => {
+    if (!v.trim()) return '';
     try {
       return validateUrl(v, allowed);
     } catch (e) {
@@ -64,7 +66,14 @@ const url = (allowed: Scheme[]) =>
       return z.NEVER;
     }
   });
-const optUrl = (allowed: Scheme[]) => z.union([z.null(), z.literal('').transform(() => null), url(allowed)]);
+const optUrl = (allowed: Scheme[]) => z.union([z.null(), z.literal('').transform(() => null), url(allowed).transform((v) => v || null)]);
+
+/** Einträge, deren Ziel noch fehlt (im Entwurf erlaubt, werden nicht angezeigt und verhindern das Veröffentlichen). */
+export function missingTarget(b: Block): boolean {
+  if (b.type === 'link') return !b.url;
+  if (b.type === 'action') return !b.value.trim();
+  return false;
+}
 const text = (max: number) => z.string().max(max).transform((s) => s.replace(/\r\n/g, '\n'));
 const localDateTime = z.string().regex(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/, 'Bitte Datum und Uhrzeit im Format JJJJ-MM-TTTHH:MM angeben.');
 const assetId = z.string().regex(/^[a-f0-9]{16,64}$/);
@@ -80,6 +89,7 @@ export const blockSchema = z.discriminatedUnion('type', [
   z.object({ ...common, type: z.literal('action'), kind: z.enum(['call', 'email', 'booking', 'contact']), label: text(60), value: z.string().max(2000) })
     .strict()
     .superRefine((b, c) => {
+      if (!b.value.trim()) return;
       try {
         actionHref(b.kind, b.value);
       } catch (e) {

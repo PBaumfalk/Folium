@@ -80,3 +80,18 @@ test('Ansehen-Rolle kann nichts verändern', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Veröffentlichen' })).toHaveCount(0);
   await expect(page.getByLabel('Name', { exact: true })).toBeDisabled();
 });
+
+test('neuer Link ohne Ziel wird gespeichert, Veröffentlichen nennt den fehlenden Eintrag', async ({ page }) => {
+  await login(page);
+  await newPage(page, 'Unfertig', 'Editorial', 'Leer');
+  await page.locator('.addmenu button', { hasText: 'Link' }).click();
+  await page.getByLabel('Titel').fill('Noch ohne Ziel');
+  await saved(page);
+  await expect(page.getByText('Noch kein Ziel')).toBeVisible();
+});
+
+test('Fehler aus der Anmeldung über OIDC wird auf der Anmeldeseite angezeigt', async ({ page }) => {
+  await page.goto('/?fehler=Ihr%20Konto%20ist%20f%C3%BCr%20Folium%20nicht%20freigeschaltet.');
+  await expect(page.getByRole('alert')).toContainText('nicht freigeschaltet');
+  await expect(page).toHaveURL(/\/$/);
+});

@@ -22,7 +22,17 @@ function useSubmit() {
   return { busy, error, run };
 }
 
+const OIDC_ERRORS: Record<string, string> = { sitzung: 'Die Anmeldung hat zu lange gedauert oder wurde in einem anderen Fenster begonnen. Bitte erneut versuchen.' };
+/** Fehlermeldung aus ?fehler=… (Rückleitung der Anmeldung über OIDC), danach aus der Adresszeile entfernen */
+function oidcError(): string | null {
+  const q = new URLSearchParams(window.location.search).get('fehler');
+  if (!q) return null;
+  window.history.replaceState(null, '', window.location.pathname);
+  return OIDC_ERRORS[q] ?? q.slice(0, 300);
+}
+
 export function Login({ session }: { session: Session }) {
+  const [oidcMsg] = useState(oidcError);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { busy, error, run } = useSubmit();
@@ -36,9 +46,9 @@ export function Login({ session }: { session: Session }) {
         <img src="/favicon.svg" alt="" width={40} height={40} />
         <h1>Anmelden</h1>
         <p className="muted" style={{ marginTop: 0 }}>Folium – Linkseiten auf dem eigenen Server</p>
-        {error && (
+        {(error || oidcMsg) && (
           <div className="callout bad" role="alert" style={{ marginBottom: 14 }}>
-            {error.message}
+            {error ? error.message : oidcMsg}
           </div>
         )}
         {session.localLogin && (

@@ -38,6 +38,7 @@ Der Knopf **Veröffentlichen** oben rechts ist nur aktiv, wenn es Änderungen ge
    | Kontrast der Farben | Warnung | *Geringer Kontrast: Text auf Hauptaktion (3,1:1), … Das erschwert das Lesen, besonders auf Smartphones im Freien.* |
    | Sichtbare Einträge | Warnung | *Die Seite enthält keine sichtbaren Einträge.* |
    | Name im Kopf | Pflicht (wird beim Absenden geprüft) | *Bitte einen Namen im Kopf der Seite eintragen.* |
+   | Ziel bei eingeblendeten Links und Hauptaktionen | Pflicht (wird beim Absenden geprüft) | *Bei „…“ fehlt noch das Ziel. Bitte ergänzen oder den Eintrag ausblenden.* ([Kapitel 3](03-seiten-bearbeiten.md#einträge-ohne-ziel)) |
 
    Eine Kontrastwarnung hält Sie nicht auf. Besser ist es aber, im Reiter **Design** auf **Korrigieren** zu klicken ([Kapitel 5](05-design.md#kontrastprüfung-und-korrigieren)).
 
@@ -67,7 +68,7 @@ Je Zeile gibt es diese Knöpfe:
 | --- | --- |
 | **Ansehen** | Zeigt die Version in einem Fenster, gekennzeichnet mit *Vorschau – Version N*. Ändert nichts. |
 | **Wiederherstellen** | Macht die alte Version **sofort wieder öffentlich**, und zwar als neue Version mit der nächsten Nummer. Ihr Entwurf bleibt unverändert. Folium fragt vorher nach. |
-| **In Entwurf laden** | Übernimmt die alte Version **nur in den Entwurf**. Öffentlich ändert sich nichts, bis Sie veröffentlichen. |
+| **In Entwurf laden** | Übernimmt die alte Version **nur in den Entwurf**. Öffentlich ändert sich nichts, bis Sie veröffentlichen. Folium fragt vorher nach. |
 
 **Wiederherstellen** und **In Entwurf laden** fehlen bei der Version, die gerade öffentlich ist.
 
@@ -76,7 +77,7 @@ Je Zeile gibt es diese Knöpfe:
 - **Wiederherstellen** ist der Notausgang: Nach einer fehlerhaften Veröffentlichung ist mit einem Klick wieder der alte Stand online. Danach können Sie den Entwurf in Ruhe korrigieren.
 - **In Entwurf laden** nutzen Sie, wenn Sie eine alte Fassung als Ausgangspunkt für neue Änderungen brauchen, etwa die Sommer-Sprechzeiten vom letzten Jahr.
 
-> **Gut zu wissen:** **In Entwurf laden** fragt nicht nach und ersetzt den bisherigen Entwurf vollständig. Ungespeicherte oder unveröffentlichte Änderungen gehen dabei verloren; nur das bisherige Design landet unter **Frühere Entwurfsdesigns** ([Kapitel 5](05-design.md#frühere-entwurfsdesigns)).
+> **Gut zu wissen:** **In Entwurf laden** ersetzt den bisherigen Entwurf vollständig. Die Rückfrage *Version N in den Entwurf laden?* weist darauf hin: *Der aktuelle Entwurf wird durch diese Version ersetzt. Öffentlich ändert sich nichts, bis Sie veröffentlichen. Den bisherigen Entwurf finden Sie danach nicht mehr unter „Versionen“.* Ungespeicherte oder unveröffentlichte Änderungen gehen dabei verloren; nur das bisherige Design landet unter **Frühere Entwurfsdesigns** ([Kapitel 5](05-design.md#frühere-entwurfsdesigns)).
 
 ## Änderungen verwerfen
 
@@ -104,7 +105,7 @@ Eine Seite löschen Sie im Reiter **Seite** unter **Seite entfernen** mit **In d
 
 Unter **Papierkorb** in der Hauptnavigation stehen alle gelöschten Seiten mit Name, Adresse und Löschdatum. **Wiederherstellen** holt eine Seite zurück, mit Entwurf, allen Versionen und Statistik. War sie vorher veröffentlicht, ist sie danach sofort wieder öffentlich (*„…“ wiederhergestellt und wieder öffentlich.*).
 
-Nach Ablauf der Frist löscht Folium Seiten endgültig, samt Versionen. Standard sind 30 Tage. Admins können die Frist unter **Einstellungen → Allgemein → Papierkorb leeren nach (Tagen)** zwischen 1 und 365 Tagen einstellen ([Kapitel 11](11-einstellungen.md)). Die Hinweistexte im Papierkorb nennen unabhängig davon immer 30 Tage.
+Nach Ablauf der Frist löscht Folium Seiten endgültig, samt Versionen. Standard sind 30 Tage. Admins können die Frist unter **Einstellungen → Allgemein → Papierkorb leeren nach (Tagen)** zwischen 1 und 365 Tagen einstellen ([Kapitel 11](11-einstellungen.md)). Die Hinweistexte im Papierkorb und in der Rückfrage beim Löschen nennen die eingestellte Zahl Tage.
 
 ---
 

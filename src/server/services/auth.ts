@@ -45,7 +45,7 @@ export function validatePassword(pw: string): void {
   if (pw.length > 200) throw new AppError(422, 'weak_password', 'Das Passwort ist zu lang (höchstens 200 Zeichen).', 'password');
 }
 
-/** Begrenzung fehlgeschlagener Anmeldungen je Konto und je Absender (nur im Arbeitsspeicher). */
+/** Begrenzung fehlgeschlagener Anmeldungen je Konto (nur im Arbeitsspeicher; je Absender greift das Rate-Limit der Anmelderoute). */
 export class LoginThrottle {
   private fails = new Map<string, { n: number; until: number; first: number }>();
   constructor(
@@ -107,17 +107,18 @@ export class Auth {
   }
 
   /** Konto aus OIDC anlegen oder aktualisieren. Vorhandene lokale Konten nur bei bestätigter E-Mail verknüpfen. */
-  async upsertOidcUser(issuer: string, sub: string, email: string, name: string, role: Role, emailVerified: boolean): Promise<UserRow> {
+  /** `fromGroup`: Rolle stammt aus einer passenden Gruppe. Sonst behält ein bestehendes Konto seine Rolle (z. B. von Hand gesetzt). */
+  async upsertOidcUser(issuer: string, sub: string, email: string, name: string, role: Role, emailVerified: boolean, fromGroup = true): Promise<UserRow> {
     const bySub = this.db.prepare('SELECT * FROM users WHERE oidc_issuer = ? AND oidc_sub = ?').get(issuer, sub) as UserRow | undefined;
     if (bySub) {
       if (bySub.disabled) throw new AppError(403, 'disabled', 'Dieses Konto ist gesperrt.');
-      this.db.prepare('UPDATE users SET role = ?, name = ? WHERE id = ?').run(role, name.slice(0, 120), bySub.id);
+      this.db.prepare('UPDATE users SET role = ?, name = ? WHERE id = ?').run(fromGroup ? role : bySub.role, name.slice(0, 120), bySub.id);
       return this.getUser(bySub.id)!;
     }
     const byMail = this.byEmail(email);
     if (byMail) {
       if (!emailVerified || byMail.oidc_sub) throw new AppError(409, 'conflict', 'Für diese E-Mail-Adresse gibt es schon ein lokales Konto. Bitte eine Admin-Person um Verknüpfung bitten.');
-      this.db.prepare('UPDATE users SET oidc_issuer = ?, oidc_sub = ?, role = ? WHERE id = ?').run(issuer, sub, role, byMail.id);
+      this.db.prepare('UPDATE users SET oidc_issuer = ?, oidc_sub = ?, role = ? WHERE id = ?').run(issuer, sub, fromGroup ? role : byMail.role, byMail.id);
       return this.getUser(byMail.id)!;
     }
     return this.createUser({ email, name, role, oidc: { issuer, sub } });

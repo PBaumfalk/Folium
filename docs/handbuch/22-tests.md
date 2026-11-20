@@ -8,8 +8,8 @@ Folium wird auf drei Ebenen geprüft:
 
 | Ebene | Werkzeug | Befehl | Umfang (Stand 20.11.2026) |
 | --- | --- | --- | --- |
-| Server | vitest | `npm test` | 17 Testdateien, 128 Tests: 127 bestanden, 1 übersprungen (Live-KI ohne Schlüssel), Laufzeit rund 6 s |
-| Oberfläche | Playwright (Chromium) mit axe-core | `scripts/e2e-local.sh` | 31 Testläufe: 23 auf Desktop (1440 × 900), 8 auf Pixel 7 |
+| Server | vitest | `npm test` | 18 Testdateien, 137 Tests: 136 bestanden, 1 übersprungen (Live-KI ohne Schlüssel), Laufzeit rund 6 s |
+| Oberfläche | Playwright (Chromium) mit axe-core | `scripts/e2e-local.sh` | 33 Testläufe: 25 auf Desktop (1440 × 900), 8 auf Pixel 7 |
 | Container | Shell + Docker Compose | `scripts/docker-lifecycle-test.sh` | 16 Prüfschritte im echten Image |
 
 Dazu kommen `npm run typecheck` (TypeScript für Server und Oberfläche, je eigene `tsconfig`) und der vorbereitete Live-Test der KI. Die Ergebnisse des letzten vollständigen Laufs stehen im [Prüfbericht](../pruefbericht.md).
@@ -36,13 +36,14 @@ Dazu kommen `npm run typecheck` (TypeScript für Server und Oberfläche, je eige
 | `ai.test.ts` | 13 | Abbildung der KI-Antwort, erfundene Farben, Farb- und Schriftnormalisierung, festgehaltene Werte, Kontrast, Prompt-Aufbau, JSON-Schema, Kosten und Limits |
 | `design-routes.test.ts` | 7 | Ablauf über die API: Analyse ohne KI-Aufruf, `ai_not_configured`, simulierte Varianten ändern nichts, Injektion, ungültiges JSON, Rolle, Schlüssel nie ausgegeben |
 | `review-fixes.test.ts` | 7 | Regressionstests zu den Befunden der Gesamtprüfung |
+| `release-fixes.test.ts` | 9 | Regressionstests zu Fehlern, die beim Schreiben des Handbuchs aufgefallen sind: Protokoll bei Serverfehlern, `AI_MONTHLY_BUDGET_EUR=0`, `BACKUP_KEEP=0` und Sicherungen in derselben Sekunde, Kommandozeile ohne vorgezogene Wiederherstellung, Standard-Designrichtung, OIDC-Rolle ohne passende Gruppe, kanonische Adresse auf weiteren Domains, `?src=` in beliebiger Schreibweise, Einträge ohne Ziel |
 | `ai.live.test.ts` | 1 | echter KI-Aufruf, nur mit Schlüssel (siehe unten) |
 
-Regel: Jeder behobene Fehler bekommt einen Test, der ohne die Korrektur fehlschlägt (`review-fixes.test.ts`).
+Regel: Jeder behobene Fehler bekommt einen Test, der ohne die Korrektur fehlschlägt (`review-fixes.test.ts`, `release-fixes.test.ts`).
 
 Hinweise:
 
-- Der Bildschirmfoto-Test in `analysis.test.ts` startet einen lokalen Chromium und **gilt ohne installierten Chromium stillschweigend als bestanden**. Der Test in `review-fixes.test.ts` zu Seiten mit mehr als 40 Unterressourcen braucht den Chromium dagegen zwingend. Einmalig: `npx playwright install chromium`.
+- Der Bildschirmfoto-Test in `analysis.test.ts` startet einen lokalen Chromium; ohne installierten Chromium meldet vitest ihn als **übersprungen**. Der Test in `review-fixes.test.ts` zu Seiten mit mehr als 40 Unterressourcen braucht den Chromium dagegen zwingend. Einmalig: `npx playwright install chromium`.
 - In der CI laufen die Server-Tests in drei Zeitzonen (Europe/Berlin, UTC, Pacific/Auckland), weil Zeitpläne unabhängig von der Serverzeitzone in Europe/Berlin rechnen.
 
 ## Browser-Tests (`e2e/`)
@@ -56,7 +57,7 @@ scripts/e2e-local.sh              # baut die Oberfläche und startet Playwright
 
 | Datei | Desktop | Pixel 7 | Inhalt |
 | --- | --- | --- | --- |
-| `flows.spec.ts` | 4 | – | anlegen → Link hinzufügen → per Tastatur sortieren → Vorschau → veröffentlichen → Entwurf ändern (öffentlich unverändert) → wiederherstellen; Löschen mit Rückgängig und Papierkorb; Konflikt bei zwei Tabs; Rolle Ansehen |
+| `flows.spec.ts` | 6 | – | anlegen → Link hinzufügen → per Tastatur sortieren → Vorschau → veröffentlichen → Entwurf ändern (öffentlich unverändert) → wiederherstellen; Löschen mit Rückgängig und Papierkorb; Konflikt bei zwei Tabs; Rolle Ansehen; neuer Link ohne Ziel wird gespeichert und zeigt den Hinweis *Noch kein Ziel*; Fehlermeldung der OIDC-Anmeldung auf der Anmeldeseite |
 | `design.spec.ts` | 3 | – | manuelles Design wirkt erst nach Veröffentlichen; Analyse blockiert interne Ziele mit Grund; Varianten der simulierten KI ändern nur den Entwurf |
 | `public.spec.ts` | 5 | 5 | alle drei Designs: Inhalt, Pflichtlinks, axe-core, kein Querscrollen; Klickzählung und Link ohne Zählung; Sprunglink und sichtbarer Fokus |
 | `mobile.spec.ts` | 3 | 3 | kein horizontales Scrollen bei 320, 375 und 390 px |
@@ -102,8 +103,6 @@ Der Workflow `.github/workflows/ci.yml` (Name „Tests, Image & Release“) wird
 | `e2e` | `npm ci`, Handbuch-Linkprüfung `npm run docs:check`, `npx playwright install --with-deps chromium`, `scripts/e2e-local.sh`; bei Fehlschlag Bericht und Traces als Artefakt (14 Tage) |
 | `image` | nach `tests` und `e2e`: Versionsprüfung (Tag muss zu `package.json` passen), Container-Test `scripts/docker-lifecycle-test.sh`, bei Push: Images `folium` und `folium-browser` für amd64 und arm64 bauen und nach ghcr.io pushen |
 | `release` | nur bei Tags: Abschnitt der Version aus `CHANGELOG.md` als GitHub-Release |
-
-Offen: Das Skript `docs:check` fehlt noch in `package.json`; bis es angelegt ist, schlägt der Job `e2e` an diesem Schritt fehl.
 
 ---
 

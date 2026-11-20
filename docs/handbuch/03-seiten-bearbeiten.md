@@ -13,7 +13,7 @@
 | **Name (nur intern)** | Erscheint nur in der Verwaltung, z. B. „Muster Instagram“. Höchstens 120 Zeichen. |
 | **Adresse** | Teil hinter dem Schrägstrich der öffentlichen Adresse. Darunter steht die vollständige Adresse zur Kontrolle. |
 | **Inhalt** | Inhaltsvorlage, siehe unten |
-| **Design (jederzeit änderbar)** | Eine der drei Designrichtungen; vorausgewählt und als **Empfohlen** markiert ist **Editorial** ([Kapitel 5](05-design.md)) |
+| **Design (jederzeit änderbar)** | Eine der drei Designrichtungen ([Kapitel 5](05-design.md)). Vorausgewählt ist die **Standard-Designrichtung** aus den Einstellungen (ab Werk **Editorial**, [Kapitel 11](11-einstellungen.md#pflichtangaben-für-neue-seiten)). Als **Empfohlen** markiert ist immer **Editorial**. |
 
 **Seite anlegen** öffnet danach direkt den Editor. Die neue Seite ist noch nicht öffentlich.
 
@@ -38,8 +38,6 @@ Solange Sie das Feld **Adresse** nicht selbst ändern, bildet Folium sie aus dem
 | **Leer** | Nur der Name als Kopf, keine Einträge |
 
 Alle Vorlagen übernehmen die Adressen von Impressum und Datenschutzerklärung aus den Einstellungen; sind diese dort leer, bleiben sie auch in der neuen Seite leer, und die Seite lässt sich erst veröffentlichen, wenn Sie sie im Reiter **Seite** eintragen ([Kapitel 2](02-erste-schritte.md#ersteinrichtung-mit-einrichtungscode)). Die Namen, Adressen, Telefonnummer (030 123 456 70) und E-Mail-Adresse (info@example.com) in den Vorlagen sind **erfundene Beispieldaten**. Die Links zeigen auf Unterseiten der Homepage aus den Einstellungen (etwa `/leistungen/`), ohne eingetragene Homepage auf `https://www.example.com`. Ersetzen Sie alles vor dem ersten Veröffentlichen durch Ihre eigenen Angaben.
-
-> **Gut zu wissen:** In den Einstellungen gibt es das Feld **Standard-Designrichtung**. Im Dialog „Neue Linkseite“ ist trotzdem immer Editorial vorausgewählt. Wählen Sie die gewünschte Richtung dort von Hand.
 
 ## Der Kopf der Seite
 
@@ -76,7 +74,13 @@ Telefonnummern dürfen Leerzeichen, Klammern, Schrägstriche, Punkte und Bindest
 
 Fehlerhafte Angaben zeigt Folium rot unter dem Feld, zum Beispiel *Bitte eine vollständige Adresse mit https:// angeben.*, *Bitte eine gültige Telefonnummer angeben.* oder *Adressen mit Zugangsdaten sind nicht erlaubt.*
 
-> **Gut zu wissen:** Ein neuer Link oder eine neue Hauptaktion beginnt mit dem Platzhalter `https://`. Bis dort eine vollständige Adresse steht, kann Folium den Entwurf nicht speichern und zeigt *Nicht gespeichert – erneut versuchen*. Sobald die Adresse gültig ist, speichert Folium wieder von selbst.
+### Einträge ohne Ziel
+
+Ein neuer Link, eine neue Hauptaktion und ein neues Profil unter Social Media beginnen mit einem **leeren Ziel**. Unter dem Feld steht dann *Noch kein Ziel: Der Eintrag erscheint erst, wenn hier eine Adresse steht.* Der Entwurf wird trotzdem gespeichert, Sie können also in Ruhe weiterarbeiten.
+
+- Vorschau und veröffentlichte Seite lassen Links und Hauptaktionen ohne Ziel weg, ebenso Social-Media-Profile ohne Adresse.
+- **Veröffentlichen** lehnt Folium ab, solange ein eingeblendeter Link oder eine eingeblendete Hauptaktion kein Ziel hat, und nennt die betroffenen Einträge: *Bei „…“ fehlt noch das Ziel. Bitte ergänzen oder den Eintrag ausblenden.* Ausgeblendete Einträge stören nicht.
+- Eine angefangene, aber unvollständige Adresse (etwa nur `https://`) gilt dagegen als Fehler; der Entwurf wird dann nicht gespeichert (*Nicht gespeichert – erneut versuchen*), bis die Adresse gültig oder das Feld leer ist.
 
 ## Sortieren
 
@@ -99,7 +103,7 @@ Unter den Feldern jedes Eintrags steht der aufklappbare Bereich **Sichtbarkeit u
 | **Sichtbar ab** | Datum und Uhrzeit, ab der der Eintrag erscheint. Leer = sofort. |
 | **Sichtbar bis** | Datum und Uhrzeit, bis zu der der Eintrag erscheint, einschließlich dieser Minute. Leer = unbegrenzt. |
 
-Beispiel: „Sichtbar bis 24.12., 13:59“ zeigt den Eintrag bis 13:59:59 Uhr. Die Zeiten gelten in der Zeitzone, die die IT eingestellt hat (`APP_TIMEZONE`, Standard Europe/Berlin). In der Liste tragen zeitgesteuerte Einträge den Hinweis *Zeitgesteuert* und ein Kalendersymbol.
+Beispiel: „Sichtbar bis 24.12., 13:59“ zeigt den Eintrag bis 13:59:59 Uhr. Die Zeiten gelten in der Zeitzone, die die IT eingestellt hat (`APP_TIMEZONE`, Standard Europe/Berlin); der Hinweis unter den Feldern nennt sie (*Zeiten gelten in der Zeitzone …*). In der Liste tragen zeitgesteuerte Einträge den Hinweis *Zeitgesteuert* und ein Kalendersymbol.
 
 Der Zeitplan selbst wird erst mit dem Veröffentlichen wirksam. Danach blendet Folium den Eintrag zum eingestellten Zeitpunkt von selbst ein oder aus, ohne dass jemand erneut veröffentlichen muss.
 

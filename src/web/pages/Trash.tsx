@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useCan } from '../App';
+import { useCan, useSession } from '../App';
 import { ErrorBox, fmtDate, Loading, useToast } from '../components/ui';
 import { api, type PageView } from '../lib/api';
 
@@ -7,6 +7,7 @@ export function TrashPage() {
   const qc = useQueryClient();
   const toast = useToast();
   const canEdit = useCan('editor');
+  const { trashDays } = useSession();
   const q = useQuery({ queryKey: ['trash'], queryFn: () => api.get<PageView[]>('/api/v1/trash') });
   const restore = useMutation({
     mutationFn: (id: number) => api.post<PageView>(`/api/v1/pages/${id}/restore`),
@@ -22,7 +23,7 @@ export function TrashPage() {
       <div className="head">
         <div>
           <h1 className="title">Papierkorb</h1>
-          <p className="sub">Gelöschte Seiten bleiben 30 Tage erhalten und werden danach endgültig entfernt.</p>
+          <p className="sub">Gelöschte Seiten bleiben {trashDays} Tage erhalten und werden danach endgültig entfernt.</p>
         </div>
       </div>
       {q.isLoading && <Loading />}
@@ -30,7 +31,7 @@ export function TrashPage() {
       {q.data?.length === 0 && (
         <div className="empty">
           <h2>Der Papierkorb ist leer</h2>
-          <p>Hier landen Seiten, die Sie löschen. Sie lassen sich 30 Tage lang wiederherstellen.</p>
+          <p>Hier landen Seiten, die Sie löschen. Sie lassen sich {trashDays} Tage lang wiederherstellen.</p>
         </div>
       )}
       {!!q.data?.length && (

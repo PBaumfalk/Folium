@@ -53,7 +53,7 @@ Schutzregeln:
 - Das **letzte aktive Admin-Konto** lässt sich nicht herabstufen, sperren oder löschen („Das letzte aktive Admin-Konto kann nicht herabgestuft oder gesperrt werden.“).
 - Seiten, Versionen und Protokolleinträge einer gelöschten Person bleiben erhalten; dort steht weiterhin ihre E-Mail-Adresse.
 
-Gut zu wissen: Bei Konten aus authentik setzt Folium die Rolle **bei jeder Anmeldung** neu aus den Gruppen in authentik (oder aus der Standardrolle). Eine in Folium von Hand geänderte Rolle hält deshalb nur bis zur nächsten Anmeldung. Dauerhaft ändern Sie sie über die Gruppenzugehörigkeit in authentik.
+Gut zu wissen: Bei Konten aus authentik setzt Folium die Rolle bei jeder Anmeldung neu, **wenn eine Gruppe passt** (Admin- oder Redaktionsgruppe in authentik). Eine in Folium von Hand geänderte Rolle wird dann bei der nächsten Anmeldung überschrieben. Ist die Person in keiner passenden Gruppe, bleibt die von Hand gesetzte Rolle erhalten; die Standardrolle gilt nur für neue Konten ([Kapitel 16](16-anmeldung-oidc.md#gruppen-und-rollen)).
 
 ## Passwörter
 
@@ -85,7 +85,7 @@ Hat die IT die Anmeldung über authentik eingerichtet ([Kapitel 16](16-anmeldung
 2. Bei authentik anmelden, wie bei anderen Anwendungen Ihrer Organisation auch.
 3. Sie landen angemeldet in Folium. Beim ersten Mal legt Folium dabei Ihr Konto an.
 
-Welche Rolle Sie erhalten, bestimmen Ihre Gruppen in authentik. Ist Ihr Konto keiner passenden Gruppe zugeordnet und hat die IT keine Standardrolle vorgesehen, wird die Anmeldung abgelehnt. Schlägt die Anmeldung fehl, landen Sie wieder auf der Anmeldeseite; eine Fehlermeldung zeigt die Seite dabei derzeit **nicht** an. Den Grund findet die IT im Serverprotokoll (Eintrag „OIDC-Anmeldung fehlgeschlagen“).
+Welche Rolle Sie erhalten, bestimmen Ihre Gruppen in authentik. Ist Ihr Konto keiner passenden Gruppe zugeordnet und hat die IT keine Standardrolle vorgesehen, wird die Anmeldung abgelehnt. Schlägt die Anmeldung fehl, landen Sie wieder auf der Anmeldeseite; dort steht oben der Grund, z. B. *Ihr Konto ist für Folium nicht freigeschaltet.* Weitere Einzelheiten findet die IT im Serverprotokoll (Eintrag „OIDC-Anmeldung fehlgeschlagen“).
 
 Ist die Passwort-Anmeldung abgeschaltet (`DISABLE_LOCAL_LOGIN`), zeigt die Anmeldeseite nur noch diesen Knopf.
 

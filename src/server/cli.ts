@@ -29,7 +29,7 @@ async function health() {
 }
 
 async function withApp<T>(fn: (app: Awaited<ReturnType<typeof createApp>>) => Promise<T>) {
-  const app = await createApp(config, createLogger('warn'));
+  const app = await createApp(config, createLogger('warn'), { applyRestore: false });
   try {
     return await fn(app);
   } finally {

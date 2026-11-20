@@ -105,7 +105,7 @@ Weitere Meldungen: *Die Homepage ist nicht erreichbar (…)*, *Die Homepage antw
 
 ### Die KI ist nicht eingerichtet
 
-Ohne API-Schlüssel auf dem Server läuft Schritt 1 normal. In Schritt 2 fehlt dann der Sendeknopf; stattdessen steht dort *Die KI ist nicht eingerichtet. Sie können das Design unten manuell anpassen und die erkannten Farben links übernehmen.* Die Einrichtung ist Sache der IT ([Kapitel 19](19-ki-anbindung.md)).
+Ohne API-Schlüssel auf dem Server läuft Schritt 1 normal. In Schritt 2 fehlt dann der Sendeknopf; stattdessen steht dort *Die KI ist nicht eingerichtet. Sie können die erkannten Farben links als Vorlage nehmen und im Design-Editor von Hand eintragen.* Die Einrichtung ist Sache der IT ([Kapitel 19](19-ki-anbindung.md)).
 
 ### Die KI antwortet nicht oder unbrauchbar
 

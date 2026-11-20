@@ -51,7 +51,7 @@ Mögliche Meldungen beim Eintragen:
 
 Gut zu wissen:
 
-- Die Seite auf einer weiteren Domain nennt als kanonische Adresse (für Suchmaschinen) die Wurzel dieser Domain, z. B. `https://links.maria-muster.de/`. Das gilt derzeit auch, wenn eine andere Seite über einen Pfad auf dieser Domain aufgerufen wird. Adressen mit Pfad teilen Sie deshalb am besten über die Standardadresse.
+- Kanonische Adresse (für Suchmaschinen): Die Startseite, aufgerufen über die Wurzel der Domain, nennt diese Wurzel, z. B. `https://links.maria-muster.de/`. Wird eine Seite über einen Pfad auf der Domain aufgerufen (etwa `https://links.maria-muster.de/muster`), nennt sie ihre Adresse unter der Standardadresse, z. B. `https://links.example.com/muster`.
 - Liegt die Startseite im Papierkorb oder ist sie nicht veröffentlicht, zeigt die Domain-Wurzel die Hinweisseite. Wird die Seite endgültig gelöscht (nach Ablauf der Papierkorbfrist), entfernt Folium die Zuordnung; die Domain bleibt eingetragen und zeigt auf „keine Seite“.
 - Aufrufe und Klicks zählt Folium unabhängig davon, über welche Domain eine Seite aufgerufen wurde. Die Statistik unterscheidet Domains nicht ([Kapitel 8](08-statistik.md)).
 

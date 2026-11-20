@@ -265,7 +265,7 @@ export function AnalysisFlow({ page, content, current, locks, onClose, onApply }
                 ) : (
                   <div className="callout warn">
                     <AlertTriangle className="lucide" aria-hidden="true" />
-                    <span>Die KI ist nicht eingerichtet. Sie können das Design unten manuell anpassen und die erkannten Farben links übernehmen.</span>
+                    <span>Die KI ist nicht eingerichtet. Sie können die erkannten Farben links als Vorlage nehmen und im Design-Editor von Hand eintragen.</span>
                   </div>
                 )}
                 <button className="btn ghost" onClick={() => setStep('url')}>

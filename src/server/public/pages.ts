@@ -41,12 +41,12 @@ export function registerPublicPages(app: FastifyInstance, ctx: Ctx) {
 
   const assetUrl = (id: string, w: number) => ctx.assets.publicUrl(id, w);
 
-  function send(req: FastifyRequest, reply: FastifyReply, page: PublishedPage, host: string) {
-    const key = `${page.pageId}:${page.versionId}:${host}`;
+  function send(req: FastifyRequest, reply: FastifyReply, page: PublishedPage, host: string, viaRoot = false) {
+    const key = `${page.pageId}:${page.versionId}:${host}:${viaRoot ? 'root' : 'pfad'}`;
     const now = new Date();
     let hit = cache.get(key);
     if (!hit || hit.until <= now.getTime()) {
-      const canonical = host === baseHost ? `${ctx.config.publicBaseUrl}/${page.slug}` : `${ctx.config.publicBaseUrl.startsWith('https') ? 'https' : 'http'}://${host}/`;
+      const canonical = host === baseHost || !viaRoot ? `${ctx.config.publicBaseUrl}/${page.slug}` : `${ctx.config.publicBaseUrl.startsWith('https') ? 'https' : 'http'}://${host}/`;
       const html = renderPage({
         content: page.content,
         theme: page.theme,
@@ -102,7 +102,7 @@ export function registerPublicPages(app: FastifyInstance, ctx: Ctx) {
     const d = domainRow(host);
     const page = d?.page_id ? ctx.pages.getPublishedById(d.page_id) : null;
     if (!page) return notFound(reply);
-    return send(req, reply, page, host);
+    return send(req, reply, page, host, true);
   });
 
   app.get('/:slug', async (req, reply) => {

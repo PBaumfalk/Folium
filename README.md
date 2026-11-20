@@ -203,9 +203,9 @@ npm run build:web
 npx tsx scripts/demo.ts             # Demo „Muster & Partner“: http://localhost:18081
                                     # admin@example.test / demo-passwort-123
 AI_PROVIDER=fake DEMO_BROWSER=1 npx tsx scripts/demo.ts   # mit simulierter KI und Bildschirmfotos
-npm test                            # 127 Server-Tests (vitest)
+npm test                            # 137 Server-Tests (vitest), davon 1 nur mit KI-Schlüssel
 npm run typecheck
-scripts/e2e-local.sh                # 31 Browser-Tests, Desktop und Smartphone, mit axe-core
+scripts/e2e-local.sh                # 33 Browser-Tests, Desktop und Smartphone, mit axe-core
 scripts/docker-lifecycle-test.sh    # Container: Neustart, Persistenz, Abschottung, Sicherung
 npm run docs:check                  # Links und Anker in README und Handbuch prüfen
 ```

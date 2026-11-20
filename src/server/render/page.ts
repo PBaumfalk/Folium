@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { actionHref, SOCIAL_LABELS, type Block, type PageContent } from '../../shared/content.js';
+import { actionHref, missingTarget, SOCIAL_LABELS, type Block, type PageContent } from '../../shared/content.js';
 import { FONTS, isBundledFont, type Theme } from '../../shared/theme.js';
 import { isVisible } from '../lib/schedule.js';
 import { BASE_CSS, fontFaces, themeCss } from './css.js';
@@ -14,7 +14,7 @@ export { themeCss } from './css.js';
  * Links funktionieren ohne dieses Skript vollständig.
  */
 export const PAGE_SCRIPT =
-  "(function(){var d=document,m=d.querySelector('meta[name=folium]');if(m){var p=m.content.split(':'),s=(location.search.match(/[?&]src=([a-z0-9-]{1,32})/)||[])[1]||'';d.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[data-b]'):null;if(!a||!navigator.sendBeacon)return;try{navigator.sendBeacon('/c',new Blob([JSON.stringify({p:+p[0],v:+p[1],b:a.getAttribute('data-b'),s:s})],{type:'text/plain'}))}catch(_){}},true)}var h=d.getElementById('haupt'),l=d.getElementById('leiste');if(h&&l&&'IntersectionObserver' in window){new IntersectionObserver(function(es){var e=es[0];l.classList.toggle('an',!e.isIntersecting&&e.boundingClientRect.top<0)}).observe(h)}})();";
+  "(function(){var d=document,m=d.querySelector('meta[name=folium]');if(m){var p=m.content.split(':'),s=((location.search.match(/[?&]src=([a-z0-9-]{1,32})/i)||[])[1]||'').toLowerCase();d.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[data-b]'):null;if(!a||!navigator.sendBeacon)return;try{navigator.sendBeacon('/c',new Blob([JSON.stringify({p:+p[0],v:+p[1],b:a.getAttribute('data-b'),s:s})],{type:'text/plain'}))}catch(_){}},true)}var h=d.getElementById('haupt'),l=d.getElementById('leiste');if(h&&l&&'IntersectionObserver' in window){new IntersectionObserver(function(es){var e=es[0];l.classList.toggle('an',!e.isIntersecting&&e.boundingClientRect.top<0)}).observe(h)}})();";
 export const PAGE_SCRIPT_HASH = `sha256-${crypto.createHash('sha256').update(PAGE_SCRIPT).digest('base64')}`;
 
 export interface RenderInput {
@@ -160,7 +160,9 @@ function sections(blocks: Block[], input: RenderInput, state: { primaryUsed: boo
 
 export function renderPage(input: RenderInput): string {
   const { content: c, theme } = input;
-  const visible = c.blocks.filter((b) => isVisible(b, input.now, input.timezone));
+  const visible = c.blocks
+    .filter((b) => isVisible(b, input.now, input.timezone) && !missingTarget(b))
+    .map((b) => (b.type === 'social' ? { ...b, items: b.items.filter((x) => x.url) } : b));
   const p = c.profile;
 
   // Führende Hauptaktionen (und eine direkt folgende Kontaktzeile) gehören in den Kopf

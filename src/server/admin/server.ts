@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import type { Ctx } from '../context.js';
 import { AppError } from '../lib/errors.js';
 import { SESSION_COOKIE } from '../services/auth.js';
-import { errorHandler } from './http.js';
+import { makeErrorHandler } from './http.js';
 import { registerAuthRoutes } from './routes/auth.js';
 
 export type RouteModule = (app: FastifyInstance, ctx: Ctx) => void | Promise<void>;
@@ -25,7 +25,7 @@ export async function buildAdminServer(ctx: Ctx, routeModules: RouteModule[] = [
   app.decorateRequest('principal', null);
   await app.register(cookie);
   await app.register(rateLimit, { global: false });
-  app.setErrorHandler(errorHandler);
+  app.setErrorHandler(makeErrorHandler(ctx.log));
 
   const allowedOrigin = new URL(ctx.config.appUrl).origin;
 

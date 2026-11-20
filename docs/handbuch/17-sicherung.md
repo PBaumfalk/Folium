@@ -33,7 +33,7 @@ Der Name zeigt Datum und Uhrzeit **in UTC** und die Art: `auto` (automatisch), `
 ## Automatische Sicherungen
 
 - Beim Start prüft Folium, ob die letzte automatische Sicherung älter als `BACKUP_INTERVAL_HOURS` (Standard 24) ist oder fehlt, und legt dann sofort eine an. Danach folgt alle `BACKUP_INTERVAL_HOURS` Stunden eine weitere.
-- Folium behält die neuesten `BACKUP_KEEP` (Standard 14) automatischen Sicherungen und löscht ältere.
+- Folium behält die neuesten `BACKUP_KEEP` (Standard 14) automatischen Sicherungen und löscht ältere. Mit `BACKUP_KEEP=0` bleiben alle erhalten.
 - **Manuelle** Sicherungen und Sicherungen **vor einer Wiederherstellung** löscht Folium nie automatisch. Sie bleiben, bis jemand sie entfernt (siehe unten).
 - `BACKUP_INTERVAL_HOURS=0` schaltet automatische Sicherungen ab.
 
@@ -50,7 +50,7 @@ docker compose exec folium folium sicherung
 # Sicherung angelegt: /data/backups/folium-20261120-141502-manuell
 ```
 
-Zwei Sicherungen in derselben Sekunde bekämen denselben Ordnernamen; die zweite schlägt dann fehl. Zwischen zwei Sicherungen also kurz warten.
+Entstehen zwei Sicherungen in derselben Sekunde, erhält die zweite im Namen die nächste freie Sekunde; beide bleiben erhalten.
 
 **Alte manuelle Sicherungen entfernen:**
 
@@ -98,7 +98,7 @@ Testen Sie die Wiederherstellung mindestens einmal, z. B. auf einem Testrechner 
 
 4. Nach dem Start gegebenenfalls erneut anmelden. Im Log steht „Sicherung wiederhergestellt; der vorherige Stand wurde gesichert“.
 
-Die Wiederherstellung ist nur **vorgemerkt** (Datei `/data/wiederherstellen.json`), bis Folium neu startet. Bis dahin läuft alles normal weiter; Änderungen in dieser Zeit gehen beim Einspielen verloren (sie stecken aber in der Sicherung `vor-wiederherst`). Wer mehrmals **Vormerken** wählt, bekommt die zuletzt gewählte Sicherung. Eine Vormerkung zurücknehmen:
+Die Wiederherstellung ist nur **vorgemerkt** (Datei `/data/wiederherstellen.json`), bis Folium neu startet. Bis dahin läuft alles normal weiter; Änderungen in dieser Zeit gehen beim Einspielen verloren (sie stecken aber in der Sicherung `vor-wiederherst`). Wer mehrmals **Vormerken** wählt, bekommt die zuletzt gewählte Sicherung. Die Befehle der Kommandozeile (`konten`, `passwort`, `sicherung`) lassen die Vormerkung unberührt; eingespielt wird nur beim Neustart des Dienstes. Eine Vormerkung zurücknehmen:
 
 ```bash
 docker compose exec folium rm /data/wiederherstellen.json

@@ -10,7 +10,7 @@ const createSchema = z
   .object({
     name: z.string().min(1, 'Bitte einen Namen angeben.').max(120),
     slug: z.string().max(100),
-    preset: z.enum(['editorial', 'boutique', 'signature']),
+    preset: z.enum(['editorial', 'boutique', 'signature']).optional(),
     template: z.enum(TEMPLATE_IDS).optional(),
   })
   .strict();
@@ -30,7 +30,8 @@ export function registerPageRoutes(app: FastifyInstance, ctx: Ctx) {
   });
   app.post('/api/v1/pages', async (req) => {
     const p = need(req, 'editor');
-    const body = parse(createSchema, req.body);
+    const parsed = parse(createSchema, req.body);
+    const body = { ...parsed, preset: parsed.preset ?? ctx.settings.all().defaultPreset };
     const page = pages.create(body, p);
     ctx.audit.log(p, 'page.create', 'page', page.id, { slug: page.slug, preset: body.preset, template: body.template });
     return page;

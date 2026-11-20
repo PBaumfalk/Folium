@@ -9,7 +9,8 @@ import { AppError } from '../lib/errors.js';
  * Wiederherstellen wird vorgemerkt und beim nächsten Start angewendet; der vorherige Stand wird dabei gesichert.
  */
 const NAME = /^folium-\d{8}-\d{6}-[a-z-]{1,20}$/;
-const pending = (c: Config) => path.join(c.dataDir, 'wiederherstellen.json');
+export const pendingRestoreFile = (c: Config) => path.join(c.dataDir, 'wiederherstellen.json');
+const pending = pendingRestoreFile;
 
 export class Backups {
   constructor(
@@ -20,9 +21,17 @@ export class Backups {
   }
 
   create(label = 'auto'): { name: string; file: string } {
-    const ts = new Date().toISOString().replace(/[-:]/g, '').replace('T', '-').slice(0, 15);
-    const name = `folium-${ts}-${label.replace(/[^a-z-]/g, '').slice(0, 20) || 'auto'}`;
-    const dir = path.join(this.config.backupDir, name);
+    const clean = label.replace(/[^a-z-]/g, '').slice(0, 20) || 'auto';
+    // Zwei Sicherungen in derselben Sekunde: die nächste freie Sekunde verwenden
+    let at = Date.now();
+    let name = '';
+    let dir = '';
+    do {
+      const ts = new Date(at).toISOString().replace(/[-:]/g, '').replace('T', '-').slice(0, 15);
+      name = `folium-${ts}-${clean}`;
+      dir = path.join(this.config.backupDir, name);
+      at += 1000;
+    } while (fs.existsSync(dir));
     fs.mkdirSync(dir, { recursive: true });
     this.db.exec(`VACUUM INTO '${path.join(dir, 'folium.db').replace(/'/g, "''")}'`);
     if (fs.existsSync(this.config.assetDir)) fs.cpSync(this.config.assetDir, path.join(dir, 'assets'), { recursive: true });
@@ -42,7 +51,9 @@ export class Backups {
       });
   }
 
+  /** Behält die neuesten `keep` automatischen Sicherungen; 0 = alle behalten. */
   prune(keep: number) {
+    if (keep <= 0) return;
     const auto = this.list().filter((b) => b.label === 'auto');
     for (const b of auto.slice(keep)) fs.rmSync(path.join(this.config.backupDir, b.name), { recursive: true, force: true });
   }

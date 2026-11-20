@@ -32,9 +32,9 @@ function newBlock(type: BlockType): Block {
   const base = { id: newBlockId(), enabled: true, visibleFrom: null, visibleUntil: null };
   switch (type) {
     case 'action':
-      return { ...base, type, kind: 'booking', label: 'Termin vereinbaren', value: 'https://' };
+      return { ...base, type, kind: 'booking', label: 'Termin vereinbaren', value: '' };
     case 'link':
-      return { ...base, type, title: 'Neuer Link', description: '', url: 'https://', icon: null, imageAssetId: null };
+      return { ...base, type, title: 'Neuer Link', description: '', url: '', icon: null, imageAssetId: null };
     case 'heading':
       return { ...base, type, text: 'Neuer Abschnitt' };
     case 'location':
@@ -325,8 +325,8 @@ export function PageEditor() {
                 {canEdit && (
                   <div className="panel">
                     <h2 className="h">Seite entfernen</h2>
-                    <p className="muted" style={{ marginTop: 0 }}>Die Seite ist sofort nicht mehr öffentlich erreichbar. Sie bleibt 30 Tage im Papierkorb und lässt sich dort wiederherstellen.</p>
-                    <button className="btn danger" onClick={() => confirmer.ask({ title: 'In den Papierkorb legen?', text: `„${page.name}“ ist danach sofort nicht mehr öffentlich erreichbar. Im Papierkorb bleibt die Seite 30 Tage wiederherstellbar.`, label: 'In den Papierkorb', danger: true }, () => trash.mutate())}>
+                    <p className="muted" style={{ marginTop: 0 }}>Die Seite ist sofort nicht mehr öffentlich erreichbar. Sie bleibt {session.trashDays} Tage im Papierkorb und lässt sich dort wiederherstellen.</p>
+                    <button className="btn danger" onClick={() => confirmer.ask({ title: 'In den Papierkorb legen?', text: `„${page.name}“ ist danach sofort nicht mehr öffentlich erreichbar. Im Papierkorb bleibt die Seite ${session.trashDays} Tage wiederherstellbar.`, label: 'In den Papierkorb', danger: true }, () => trash.mutate())}>
                       In den Papierkorb
                     </button>
                   </div>
@@ -528,7 +528,7 @@ function Versions({ page, onRestored, canEdit }: { page: PageView; onRestored: (
                   </button>
                   {canEdit && !v.current && (
                     <>
-                      <button className="btn sm" onClick={() => m.mutate({ v, mode: 'draft' })} disabled={m.isPending}>
+                      <button className="btn sm" onClick={() => confirmer.ask({ title: `Version ${v.number} in den Entwurf laden?`, text: 'Der aktuelle Entwurf wird durch diese Version ersetzt. Öffentlich ändert sich nichts, bis Sie veröffentlichen. Den bisherigen Entwurf finden Sie danach nicht mehr unter „Versionen“.', label: 'In Entwurf laden' }, () => m.mutate({ v, mode: 'draft' }))} disabled={m.isPending}>
                         In Entwurf laden
                       </button>
                       <button className="btn sm primary" onClick={() => confirmer.ask({ title: `Version ${v.number} wiederherstellen?`, text: `Version ${v.number} wird sofort wieder öffentlich (als neue Version). Ihr aktueller Entwurf bleibt unverändert.`, label: 'Wiederherstellen' }, () => m.mutate({ v, mode: 'publish' }))} disabled={m.isPending}>

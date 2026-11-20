@@ -128,8 +128,14 @@ export function ErrorBox({ error, retry }: { error: unknown; retry?: () => void 
   );
 }
 
+/** Zeitzone der Instanz (APP_TIMEZONE), gesetzt beim Laden der Sitzung */
+let displayTz = 'Europe/Berlin';
+export const setDisplayTimeZone = (tz: string) => {
+  displayTz = tz;
+};
+export const displayTimeZone = () => displayTz;
 export const fmtDate = (iso: string | null | undefined) =>
-  iso ? new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Berlin' }).format(new Date(iso)) : '–';
+  iso ? new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short', timeZone: displayTz }).format(new Date(iso)) : '–';
 export const fmtRel = (iso: string | null | undefined) => {
   if (!iso) return '–';
   const s = (Date.now() - new Date(iso).getTime()) / 1000;

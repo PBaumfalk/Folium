@@ -55,11 +55,12 @@ export function registerOidcRoutes(app: FastifyInstance, ctx: Ctx) {
       }
       const raw = info.groups;
       const groups = Array.isArray(raw) ? raw.map(String) : typeof raw === 'string' ? [raw] : [];
-      const role: Role | null = groups.some((g) => o.adminGroups.includes(g)) ? 'admin' : groups.some((g) => o.editorGroups.includes(g)) ? 'editor' : o.defaultRole === 'none' ? null : o.defaultRole;
+      const groupRole: Role | null = groups.some((g) => o.adminGroups.includes(g)) ? 'admin' : groups.some((g) => o.editorGroups.includes(g)) ? 'editor' : null;
+      const role: Role | null = groupRole ?? (o.defaultRole === 'none' ? null : o.defaultRole);
       if (!role) throw new AppError(403, 'no_role', 'Ihr Konto ist für Folium nicht freigeschaltet.');
       const email = typeof info.email === 'string' ? info.email : `${claims.sub}@oidc.invalid`;
       const verified = info.email_verified === true || info.email_verified === 'true';
-      const user = await ctx.auth.upsertOidcUser(String(claims.iss), claims.sub, email, String(info.name ?? info.preferred_username ?? email), role, verified);
+      const user = await ctx.auth.upsertOidcUser(String(claims.iss), claims.sub, email, String(info.name ?? info.preferred_username ?? email), role, verified, groupRole !== null);
       reply.setCookie(SESSION_COOKIE, ctx.auth.createSession(user.id), { path: '/', httpOnly: true, sameSite: 'strict', secure: ctx.config.secureCookies, maxAge: SESSION_DAYS * 86400 });
       ctx.audit.log({ userId: user.id, role: user.role, label: user.email }, 'login.oidc', 'user', user.id, { groups: groups.slice(0, 20) });
       return reply.redirect('/', 302);

@@ -34,7 +34,7 @@ Aus der unabhängigen Gesamtprüfung bewusst offen gelassen (gering, eingedämmt
 - **SVG-Bereinigung:** Numerische Entitäten werden vor der Prüfung nicht dekodiert. Eingedämmt durch die strenge CSP der Auslieferung und die Einbindung als `<img>`, in der SVG keine Skripte ausführt.
 - **Import:** Bilder werden eingelesen, bevor die Seiten geprüft sind. Bei einem fehlerhaften Archiv bleiben Dateien ohne Verwendung zurück.
 - **Konten:** Ein gesperrtes letztes Admin-Konto lässt sich nicht löschen.
-- **Sicherungen:** Zwei Sicherungen in derselben Sekunde kollidieren; manuelle Sicherungen werden nicht automatisch ausgedünnt (nur `auto`-Sicherungen nach `BACKUP_KEEP`).
+- **Sicherungen:** Manuelle Sicherungen werden nicht automatisch ausgedünnt (nur `auto`-Sicherungen nach `BACKUP_KEEP`).
 - **KI-Tageslimit** wechselt um Mitternacht UTC (siehe oben).
 - **Umbenennen und Entwurfsspeichern** sind nicht atomar.
 - **Die Verwaltungsoberfläche hat keine eigene CSP.** Sie soll ohnehin nur intern bzw. über VPN erreichbar sein.

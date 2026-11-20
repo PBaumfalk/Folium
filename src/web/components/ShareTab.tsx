@@ -1,10 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Copy, Download, ExternalLink, Link2, QrCode } from 'lucide-react';
+import { useCan } from '../App';
 import { api, type PageView } from '../lib/api';
 import { ErrorBox, Spinner, useToast } from './ui';
 
 export function ShareTab({ page, publicUrl }: { page: PageView; publicUrl: string }) {
   const toast = useToast();
+  const canEdit = useCan('editor');
   const info = useQuery({ queryKey: ['share', page.id], queryFn: () => api.get<{ publicUrl: string; qrUrl: string; published: boolean; filum: boolean; tessera: boolean }>(`/api/v1/pages/${page.id}/share`) });
   const filum = useMutation({ mutationFn: () => api.post<{ shortUrl: string }>(`/api/v1/pages/${page.id}/filum`) });
   const tessera = useMutation({ mutationFn: () => api.post<{ editorUrl: string }>(`/api/v1/pages/${page.id}/tessera`), onSuccess: (r) => window.open(r.editorUrl, '_blank', 'noopener') });
@@ -43,7 +45,9 @@ export function ShareTab({ page, publicUrl }: { page: PageView; publicUrl: strin
         <h2 className="h" style={{ marginTop: 18 }}>
           Kurzlink über Filum
         </h2>
-        {d?.filum ? (
+        {d?.filum && !canEdit ? (
+          <p className="small muted">Kurzlinks legen Redaktion oder Admin an.</p>
+        ) : d?.filum ? (
           <>
             {filum.data ? (
               <div className="row" style={{ flexWrap: 'nowrap' }}>
@@ -74,7 +78,7 @@ export function ShareTab({ page, publicUrl }: { page: PageView; publicUrl: strin
           <a className="btn sm" href={`/api/v1/pages/${page.id}/qr?format=svg`} download={`qr-${page.slug}.svg`}>
             <Download className="lucide" aria-hidden="true" /> SVG für den Druck
           </a>
-          {d?.tessera && (
+          {d?.tessera && canEdit && (
             <button className="btn sm" onClick={() => tessera.mutate()} disabled={tessera.isPending}>
               {tessera.isPending ? <Spinner /> : <QrCode className="lucide" aria-hidden="true" />} In Tessera gestalten
             </button>

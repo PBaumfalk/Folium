@@ -101,7 +101,7 @@ Beispiel mit angenommen 8 000 Zeichen Merkmalsdaten: 2 500 + 3 200 + 900 = 6 600
 | --- | --- | --- | --- | --- |
 | je Person | `AI_HOURLY_PER_USER` | 10 | gleitend, letzte 60 Minuten | `429 ai_limit_hour` |
 | gesamt je Tag | `AI_DAILY_LIMIT` | 30 | seit Mitternacht **UTC** | `429 ai_limit_day` |
-| Monatsbudget | `AI_MONTHLY_BUDGET_EUR` | 20 € | seit Monatsanfang (UTC) | `429 ai_limit_month` |
+| Monatsbudget | `AI_MONTHLY_BUDGET_EUR` | 20 € (`0` = kein Budget, jeder Aufruf wird abgelehnt) | seit Monatsanfang (UTC) | `429 ai_limit_month` |
 
 Gezählt wird jeder echte Aufruf in der Tabelle `ai_runs`, auch fehlgeschlagene. Simulierte Aufrufe zählen nicht. Für das Monatsbudget summiert Folium die geschätzten Kosten; ein Aufruf mit Fehler wird mit 0 € verbucht. Das Budget wird vor dem Aufruf geprüft, ein einzelner Aufruf kann es also geringfügig überschreiten.
 

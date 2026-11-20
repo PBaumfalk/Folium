@@ -27,7 +27,7 @@ Was in der Oberfläche nicht einstellbar ist (Adressen, KI-Schlüssel, Sicherung
 | **Impressum** | leer | wird in **neu angelegte** Seiten als Impressum-Link übernommen, z. B. `https://www.example.com/impressum/` |
 | **Datenschutzerklärung** | leer | wird in **neu angelegte** Seiten als Datenschutz-Link übernommen, z. B. `https://www.example.com/datenschutz/` |
 | **Homepage (Vorgabe für „Design aus Homepage“)** | leer | vorbelegte Adresse beim Ablauf „Design aus Homepage übernehmen“ ([Kapitel 6](06-design-aus-homepage.md)) und Ziel der Links in den Inhaltsvorlagen, z. B. `https://www.example.com/` |
-| **Standard-Designrichtung** | Editorial | siehe Hinweis unten |
+| **Standard-Designrichtung** | Editorial | im Dialog **Neue Seite** vorausgewählte Designrichtung; gilt auch, wenn eine Seite über die Schnittstelle ohne Designrichtung angelegt wird |
 
 Erlaubt sind nur Adressen mit `http://` oder `https://` (höchstens 500 Zeichen) oder ein leeres Feld.
 
@@ -37,7 +37,7 @@ Gut zu wissen:
 
 - Impressum und Datenschutz gelten nur für **künftige** Seiten. Bestehende Seiten behalten ihre Links; diese ändern Sie im Editor der jeweiligen Seite. Ohne beide Links lässt sich eine Seite nicht veröffentlichen ([Kapitel 4](04-veroeffentlichen-und-versionen.md)).
 - Die Datenschutzerklärung der Homepage sollte den Abschnitt zu Folium enthalten; einen Textbaustein enthält [Kapitel 12](12-datenschutz.md#textbaustein-für-die-datenschutzerklärung).
-- **Standard-Designrichtung** wird gespeichert, wirkt sich in Version 0.1.0 aber noch nicht aus: Der Dialog **Neue Seite** beginnt immer mit „Editorial“. Die Richtung wählen Sie dort selbst.
+- **Standard-Designrichtung** ist nur eine Vorauswahl. Im Dialog **Neue Seite** lässt sich jede Richtung wählen; bestehende Seiten ändern sich nicht.
 
 ### Statistik und Aufbewahrung
 
@@ -45,7 +45,7 @@ Gut zu wissen:
 | --- | --- | --- | --- |
 | **Aufrufe und Klicks zählen (nur Tagessummen, keine Besucherdaten)** | an | an/aus | aus: Folium zählt ab sofort nichts mehr; vorhandene Zahlen bleiben bis zum Ablauf der Aufbewahrung |
 | **Statistik aufbewahren (Tage)** | 730 | 30–3650 | ältere Tagessummen löscht Folium automatisch |
-| **Papierkorb leeren nach (Tagen)** | 30 | 1–365 | Seiten, die länger im Papierkorb liegen, löscht Folium endgültig |
+| **Papierkorb leeren nach (Tagen)** | 30 | 1–365 | Seiten, die länger im Papierkorb liegen, löscht Folium endgültig; die Hinweistexte im Papierkorb nennen die eingestellte Zahl |
 
 Die Aufräumarbeiten laufen beim Start und danach stündlich. Eine verkürzte Frist wirkt also spätestens nach einer Stunde. Endgültig gelöschte Seiten lassen sich nur noch über eine Sicherung zurückholen ([Kapitel 17](17-sicherung.md)).
 
@@ -77,7 +77,7 @@ Darunter steht, ob der **Browser-Dienst** für Bildschirmfotos eingerichtet ist.
 
 | Kachel | Inhalt |
 | --- | --- |
-| **Kosten diesen Monat** | geschätzte Kosten aller echten KI-Aufrufe im laufenden Monat, daneben das Monatsbudget (`AI_MONTHLY_BUDGET_EUR`, Standard 20 €) |
+| **Kosten diesen Monat** | geschätzte Kosten aller echten KI-Aufrufe im laufenden Monat, daneben das Monatsbudget (`AI_MONTHLY_BUDGET_EUR`, Standard 20 €; 0 sperrt die KI) |
 | **Analysen heute** | Zahl der KI-Aufrufe heute und das Tageslimit (`AI_DAILY_LIMIT`, Standard 30) |
 | **Je Person und Stunde** | Höchstzahl je Person und Stunde (`AI_HOURLY_PER_USER`, Standard 10) |
 

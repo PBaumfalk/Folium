@@ -3,12 +3,12 @@ import { ImagePlus, Plus, Trash2, Upload, X } from 'lucide-react';
 import { useRef, useState, type ReactNode } from 'react';
 import { BLOCK_LABELS, ICONS, SOCIAL_LABELS, SOCIAL_NETWORKS, validateUrl, type Block, type PageContent } from '../../shared/content';
 import { api, type Asset } from '../lib/api';
-import { Dialog, ErrorBox, Field, Loading, Spinner, useToast } from './ui';
+import { Dialog, displayTimeZone, ErrorBox, Field, Loading, Spinner, useToast } from './ui';
 
 type Patch<T> = (p: Partial<T>) => void;
 
 function urlError(v: string, allowed: ('http' | 'https' | 'tel' | 'mailto')[]): string | null {
-  if (!v.trim()) return 'Bitte eine Adresse angeben.';
+  if (!v.trim()) return 'Noch kein Ziel: Der Eintrag erscheint erst, wenn hier eine Adresse steht.';
   try {
     validateUrl(v, allowed);
     return null;
@@ -45,7 +45,7 @@ export function Schedule({ b, set, disabled }: { b: Block; set: Patch<Block>; di
             {(id) => <input id={id} type="datetime-local" className="input" value={b.visibleUntil ?? ''} onChange={(e) => set({ visibleUntil: e.target.value || null })} disabled={disabled} />}
           </Field>
         </div>
-        <p className="muted small" style={{ margin: 0 }}>Zeiten gelten in Europe/Berlin. Die Änderung wirkt erst nach dem Veröffentlichen.</p>
+        <p className="muted small" style={{ margin: 0 }}>Zeiten gelten in der Zeitzone {displayTimeZone()}. Die Änderung wirkt erst nach dem Veröffentlichen.</p>
       </div>
     </details>
   );
@@ -58,7 +58,7 @@ export function BlockInspector({ block, onChange, disabled }: { block: Block; on
   switch (b.type) {
     case 'action': {
       const allowed = b.kind === 'call' ? (['tel'] as const) : b.kind === 'email' ? (['mailto'] as const) : (['http', 'https', 'tel', 'mailto'] as const);
-      const val = b.kind === 'call' ? (b.value.startsWith('tel:') ? b.value : `tel:${b.value}`) : b.kind === 'email' ? (b.value.startsWith('mailto:') ? b.value : `mailto:${b.value}`) : b.value;
+      const val = !b.value.trim() ? '' : b.kind === 'call' ? (b.value.startsWith('tel:') ? b.value : `tel:${b.value}`) : b.kind === 'email' ? (b.value.startsWith('mailto:') ? b.value : `mailto:${b.value}`) : b.value;
       body = (
         <>
           <Field label="Art">
@@ -161,7 +161,7 @@ export function BlockInspector({ block, onChange, disabled }: { block: Block; on
               </button>
             </div>
           ))}
-          <button className="btn sm" onClick={() => set({ items: [...b.items, { network: 'linkedin', url: 'https://' }] })} disabled={disabled || b.items.length >= 10}>
+          <button className="btn sm" onClick={() => set({ items: [...b.items, { network: 'linkedin', url: '' }] })} disabled={disabled || b.items.length >= 10}>
             <Plus className="lucide" /> Profil hinzufügen
           </button>
         </div>
@@ -290,7 +290,7 @@ export function AssetPicker({ onClose, onPick, current, kind }: { onClose: () =>
   return (
     <Dialog title={kind === 'font' ? 'Schrift auswählen' : 'Bild auswählen'} onClose={onClose} wide footer={<button className="btn" onClick={onClose}>Schließen</button>}>
       <p className="muted" style={{ marginTop: 0 }}>
-        {kind === 'font' ? 'WOFF2, TTF oder OTF bis 5 MB. Bitte nur Schriften hochladen, deren Lizenz die Nutzung im Web erlaubt.' : 'JPEG, PNG, WebP, AVIF oder SVG bis 5 MB. Bilder werden verkleinert und ohne Metadaten (z. B. Standort) gespeichert.'}
+        {kind === 'font' ? 'WOFF2, TTF oder OTF bis 5 MB. Bitte nur Schriften hochladen, deren Lizenz die Nutzung im Web erlaubt.' : 'JPEG, PNG, WebP, AVIF, GIF (nur erstes Bild) oder SVG bis 5 MB. Bilder werden verkleinert und ohne Metadaten (z. B. Standort) gespeichert.'}
       </p>
       <input ref={input} type="file" className="sr" accept={kind === 'font' ? '.woff2,.ttf,.otf' : 'image/*,.svg'} onChange={(e) => e.target.files?.[0] && void upload(e.target.files[0])} />
       <button className="btn" onClick={() => input.current?.click()} disabled={busy} style={{ marginBottom: 14 }}>

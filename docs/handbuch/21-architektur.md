@@ -127,9 +127,9 @@ Drei Voreinstellungen (`editorial`, `boutique`, `signature`) sind ebenfalls nur 
 
 ## Renderer und Auslieferung
 
-`renderPage()` erzeugt eine vollständige HTML-Seite: Text maskiert, CSS eingebettet, Schriften lokal per `@font-face`, Bilder als WebP in passender Breite, ein kleines Skript per CSP-Hash. Zeitgesteuerte Einträge (sichtbar ab/bis, Europe/Berlin) werden beim Rendern ausgewertet.
+`renderPage()` erzeugt eine vollständige HTML-Seite: Text maskiert, CSS eingebettet, Schriften lokal per `@font-face`, Bilder als WebP in passender Breite, ein kleines Skript per CSP-Hash. Zeitgesteuerte Einträge (sichtbar ab/bis, in `APP_TIMEZONE`, Standard Europe/Berlin) werden beim Rendern ausgewertet. Links und Hauptaktionen ohne Ziel sowie Social-Media-Profile ohne Adresse lässt der Renderer weg (`missingTarget()` in `src/shared/content.ts`).
 
-Der öffentliche Server hält gerenderte Seiten im Arbeitsspeicher je Seite, Version und Hostname. Ein Eintrag gilt bis zur nächsten Zeitplanänderung, höchstens 10 Minuten, und wird beim Veröffentlichen sofort verworfen. Antworten tragen `ETag` und `Cache-Control: public, max-age=60, must-revalidate`.
+Der öffentliche Server hält gerenderte Seiten im Arbeitsspeicher je Seite, Version, Hostname und Aufrufart (Domain-Wurzel oder Pfad), weil davon die kanonische Adresse abhängt ([Kapitel 9](09-domains.md#was-unter-einer-weiteren-domain-erreichbar-ist)). Ein Eintrag gilt bis zur nächsten Zeitplanänderung, höchstens 10 Minuten, und wird beim Veröffentlichen sofort verworfen. Antworten tragen `ETag` und `Cache-Control: public, max-age=60, must-revalidate`.
 
 Die Vorschau (`/api/v1/pages/:id/preview`, `/api/v1/preview` für ungespeicherte Änderungen, Versionsvorschau) nutzt denselben Renderer im Modus „Vorschau“ mit Banner und `noindex`.
 
@@ -143,13 +143,13 @@ POST /c (Beacon) ─┘    (Seite, Eintrag, Tag, Quelle,      (UPSERT in stats_d
 ```
 
 - Aufrufe zählt der Server beim Ausliefern, Klicks meldet das Seitenskript per `navigator.sendBeacon` an `POST /c`.
-- Der Schlüssel enthält nur Seite, Eintrag, Tag (Europe/Berlin), Quelle (`?src=`, `[a-z0-9-]{1,32}`, sonst `direkt`), Art und Bot-Kennzeichen. User-Agent und IP-Adresse werden nur zur Einordnung bzw. Drosselung benutzt und nicht gespeichert.
+- Der Schlüssel enthält nur Seite, Eintrag, Tag (`APP_TIMEZONE`), Quelle (`?src=`, kleingeschrieben, `[a-z0-9-]{1,32}`, sonst `direkt`), Art und Bot-Kennzeichen. User-Agent und IP-Adresse werden nur zur Einordnung bzw. Drosselung benutzt und nicht gespeichert.
 - Geschrieben wird alle 3 Sekunden, bei mehr als 5 000 offenen Schlüsseln sofort und beim Beenden. Schreibfehler werden protokolliert und verworfen; sie blockieren weder Auslieferung noch Klick.
 - Die stündliche Pflege löscht Summen älter als `statsRetentionDays` (Standard 730 Tage).
 
 ## Sicherungen
 
-`Backups.create()` schreibt die Datenbank per `VACUUM INTO` (konsistent im laufenden Betrieb) und die hochgeladenen Dateien nach `/data/backups/folium-<datum>-<zeit>-<label>/`. Automatisch alle `BACKUP_INTERVAL_HOURS` (Standard 24), `BACKUP_KEEP` (14) bleiben. Eine Wiederherstellung wird nur vorgemerkt und beim nächsten Start ausgeführt; der vorherige Stand wird vorher als `…-vor-wiederherst` beiseitegelegt ([Kapitel 17](17-sicherung.md)).
+`Backups.create()` schreibt die Datenbank per `VACUUM INTO` (konsistent im laufenden Betrieb) und die hochgeladenen Dateien nach `/data/backups/folium-<datum>-<zeit>-<label>/`. Ist der Name schon vergeben (zwei Sicherungen in derselben Sekunde), nimmt Folium die nächste freie Sekunde. Automatisch alle `BACKUP_INTERVAL_HOURS` (Standard 24), `BACKUP_KEEP` (14; 0 = alle) automatische Sicherungen bleiben. Eine Wiederherstellung wird nur vorgemerkt und beim nächsten Start des Dienstes ausgeführt (nicht von den Befehlen der Kommandozeile); der vorherige Stand wird vorher als `…-vor-wiederherst` beiseitegelegt ([Kapitel 17](17-sicherung.md)).
 
 ## Entscheidungen
 

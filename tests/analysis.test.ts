@@ -56,8 +56,9 @@ describe('Homepage-Analyse', () => {
     await expect(analyzeHomepage('http://169.254.169.254/', 1, loadConfig({}), log)).rejects.toMatchObject({ code: 'blocked_address' });
   });
 
-  it('captures screenshots through the guarded fetch and blocks internal subresources', async () => {
-    if (!browser) return; // ohne lokal installierten Chromium übersprungen
+  it('captures screenshots through the guarded fetch and blocks internal subresources', async (t) => {
+    // Ohne lokal installierten Chromium sichtbar übersprungen (in der CI ist Chromium installiert)
+    if (!browser) return t.skip();
     const cfg = loadConfig({ BROWSER_WS_URL: browser.wsEndpoint() });
     const a = await analyzeHomepage(`http://example.test:${port}/`, 1, cfg, log, policy);
     expect(a.screenshots).not.toBeNull();

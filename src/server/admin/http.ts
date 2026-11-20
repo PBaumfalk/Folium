@@ -1,6 +1,7 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { ZodError, type ZodType } from 'zod';
 import { AppError } from '../lib/errors.js';
+import type { Logger } from '../lib/log.js';
 import { hasRole, type Principal, type Role } from '../services/auth.js';
 
 declare module 'fastify' {
@@ -33,7 +34,8 @@ export function zodToAppError(e: ZodError): AppError {
   return new AppError(422, 'invalid', msg, field, e.issues.slice(0, 10).map((i) => ({ path: i.path.join('.'), message: i.message })));
 }
 
-export function errorHandler(err: Error & { statusCode?: number; code?: string; validation?: unknown }, req: FastifyRequest, reply: FastifyReply) {
+/** Fehlerbehandlung der Verwaltung. Unerwartete Fehler gehen ins Anwendungsprotokoll (Fastify selbst protokolliert nicht). */
+export const makeErrorHandler = (log: Pick<Logger, 'error'>) => (err: Error & { statusCode?: number; code?: string; validation?: unknown }, req: FastifyRequest, reply: FastifyReply) => {
   if (err instanceof ZodError) err = zodToAppError(err);
   if (err instanceof AppError) {
     return reply.status(err.status).send({ error: { code: err.code, message: err.message, field: err.field, details: err.details } });
@@ -42,6 +44,6 @@ export function errorHandler(err: Error & { statusCode?: number; code?: string; 
   if (status === 429) return reply.status(429).send({ error: { code: 'rate_limited', message: 'Zu viele Anfragen. Bitte kurz warten.' } });
   if (status === 413) return reply.status(413).send({ error: { code: 'too_large', message: 'Die Datei oder Anfrage ist zu groß.' } });
   if (status < 500) return reply.status(status).send({ error: { code: err.code ?? 'bad_request', message: 'Die Anfrage ist ungültig.' } });
-  req.log.error({ err }, 'Unerwarteter Fehler');
+  log.error({ err, method: req.method, url: req.url }, 'Unerwarteter Fehler');
   return reply.status(500).send({ error: { code: 'internal', message: 'Ein unerwarteter Fehler ist aufgetreten. Details stehen im Serverprotokoll.' } });
-}
+};
